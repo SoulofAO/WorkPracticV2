@@ -8,4 +8,9 @@
     <!-- Folder where production build objects will be placed -->
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist</BuildOutputFolder>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="src\Core\JSON\" />
+    <Folder Include="src\Core\Application\" />
+    <Folder Include="src\Core\Other\" />
+  </ItemGroup>
 </Project>
