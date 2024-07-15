@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\WorkPracticV2\\ReactApplication\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|d:\\workpracticv2\\reactapplication\\reactapplication\\src\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|solutionrelative:reactapplication\\src\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.css",
+              "DocumentMoniker": "D:\\WorkPracticV2\\ReactApplication\\reactapplication\\src\\App.css",
+              "RelativeDocumentMoniker": "reactapplication\\src\\App.css",
+              "ToolTip": "D:\\WorkPracticV2\\ReactApplication\\reactapplication\\src\\App.css",
+              "RelativeToolTip": "reactapplication\\src\\App.css",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-07-15T13:20:55.846Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
