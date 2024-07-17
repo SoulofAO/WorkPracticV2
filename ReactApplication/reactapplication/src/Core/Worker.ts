@@ -1,6 +1,5 @@
-
+import * as JsonLibrary from './JSON/JsonLibrary';
 import * as fs from 'fs';
-
 
 class UWorker {
     name: string;
@@ -19,30 +18,32 @@ class UWorker {
         this.id = id;
     }
 
-    SerializeJSON(json: any) {
-        this.name = String(json.title);
-        this.id = String(json.id);
-        this.email = String(json.field_pochta);
-        this.country = String(json.field_strana);
-        this.podrazdelenie = String(json.field_podrazdelenie);
+    SerializeJSON(json: any): void {
+        this.name = String(JsonLibrary.(json, 'title')[0]);
+        this.id = String(JsonLibrary.find_variables_by_name(json, 'id')[0]);
+        this.email = String(JsonLibrary.find_variables_by_name(json, 'field_pochta')[0]);
+        this.country = String(JsonLibrary.find_variables_by_name(json, 'field_strana')[0]);
+        this.podrazdelenie = String(JsonLibrary.find_variables_by_name(json, 'field_podrazdelenie')[0]);
     }
 
-    DeserializeJSON() {
-        let body = JSON.parse(fs.readFileSync("src/BaseWorkerExample.txt", "utf8"));
-        body.title = this.name;
-        body.field_pochta = this.email;
-        body.field_strana = this.country;
-        body.field_podrazdelenie = this.podrazdelenie;
+    DeserializeJSON(): any {
+        const reader = fs.readFileSync("BaseWorkerExample.txt", "utf8");
+        const body = JSON.parse(reader);
+        JsonLibrary.replace_variables_by_name(body, "title", this.name);
+        JsonLibrary.replace_variables_by_name(body, 'field_pochta', this.email);
+        JsonLibrary.replace_variables_by_name(body, 'field_strana', this.country, 0);
+        JsonLibrary.replace_variables_by_name(body, 'field_podrazdelenie', this.podrazdelenie);
+        JsonLibrary.replace_variables_by_name(body, 'field_podrazdelenie', this.podrazdelenie);
         return body;
     }
 
-    DeserializePatchJSON() {
-        let body = JSON.parse(fs.readFileSync("src/BaseWorkerPatchExample.txt", "utf8"));
-        body.id = this.id;
-        body.title = this.name;
-        body.field_pochta = this.email;
-        body.field_strana = this.country;
-        body.field_podrazdelenie = this.podrazdelenie;
+    DeserializePatchJSON(): any {
+        const reader = fs.readFileSync("BaseWorkerPatchExample.txt", "utf8");
+        const body = JSON.parse(reader);
+        JsonLibrary.replace_variables_by_name(body, "id", this.id);
+        JsonLibrary.replace_variables_by_name(body, "title", this.name);
+        JsonLibrary.replace_variables_by_name(body, 'field_pochta', this.email);
+        JsonLibrary.replace_variables_by_name(body, 'field_strana', this.country, 0);
+        JsonLibrary.replace_variables_by_name(body, 'field_podrazdelenie', this.podrazdelenie);
         return body;
     }
-}

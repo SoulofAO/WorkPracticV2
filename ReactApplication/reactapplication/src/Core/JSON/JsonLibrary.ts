@@ -1,8 +1,9 @@
-// Function to replace all variables with the given name in a JSON object
-function replaceVariablesByName(data: any, variableName: string, newValue: any, index: number = -1): void {
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// Function to replace all variables with a given name in JSON
+export function replaceVariablesByName(data: any, variableName: string, newValue: any, index: number = -1): void {
     if (index >= 0) {
         let k = -1;
-        for (const key in data) {
+        for (const [key, value] of Object.entries(data)) {
             if (key === variableName) {
                 k++;
                 if (k === index) {
@@ -10,32 +11,31 @@ function replaceVariablesByName(data: any, variableName: string, newValue: any, 
                     return;
                 }
             }
-            if (typeof data[key] === 'object' && data[key] !== null) {
-                replaceVariablesByName(data[key], variableName, newValue);
+            if (typeof value === 'object' && value !== null) {
+                replaceVariablesByName(value, variableName, newValue, index);
             }
         }
     } else {
-        for (const key in data) {
+        for (const [key, value] of Object.entries(data)) {
             if (key === variableName) {
                 data[key] = newValue;
             }
-            if (typeof data[key] === 'object' && data[key] !== null) {
-                replaceVariablesByName(data[key], variableName, newValue);
+            if (typeof value === 'object' && value !== null) {
+                replaceVariablesByName(value, variableName, newValue, index);
             }
         }
     }
 }
 
-// Function to find all variables with the given name in a JSON object
-function findVariablesByName(data: any, variableName: string): any[] {
+// Function to find all variables by name in JSON
+export function findVariablesByName(data: any, variableName: string): any[] {
     const foundVariables: any[] = [];
-    let k = -1;
-    for (const key in data) {
+    for (const [key, value] of Object.entries(data)) {
         if (key === variableName) {
-            foundVariables.push(data[key]);
+            foundVariables.push(value);
         }
-        if (typeof data[key] === 'object' && data[key] !== null) {
-            foundVariables.push(...findVariablesByName(data[key], variableName));
+        if (typeof value === 'object' && value !== null) {
+            foundVariables.push(...findVariablesByName(value, variableName));
         }
     }
     return foundVariables;

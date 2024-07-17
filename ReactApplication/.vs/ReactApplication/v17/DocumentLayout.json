@@ -3,8 +3,28 @@
   "WorkspaceRootPath": "D:\\WorkPracticV2\\ReactApplication\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|d:\\workpracticv2\\reactapplication\\reactapplication\\.vscode\\launch.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|solutionrelative:reactapplication\\.vscode\\launch.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|d:\\workpracticv2\\reactapplication\\reactapplication\\src\\app.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|solutionrelative:reactapplication\\src\\app.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|d:\\workpracticv2\\reactapplication\\reactapplication\\src\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|solutionrelative:reactapplication\\src\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|d:\\workpracticv2\\reactapplication\\reactapplication\\src\\test1.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|solutionrelative:reactapplication\\src\\test1.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|d:\\workpracticv2\\reactapplication\\reactapplication\\src\\vite-env.d.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|solutionrelative:reactapplication\\src\\vite-env.d.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|d:\\workpracticv2\\reactapplication\\reactapplication\\src\\config_file.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|solutionrelative:reactapplication\\src\\config_file.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|d:\\workpracticv2\\reactapplication\\reactapplication\\src\\main.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|solutionrelative:reactapplication\\src\\main.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|d:\\workpracticv2\\reactapplication\\reactapplication\\src\\core\\other\\delegates.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
@@ -19,16 +39,12 @@
       "RelativeMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|solutionrelative:reactapplication\\src\\core\\json\\jsonlibrary.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|d:\\workpracticv2\\reactapplication\\reactapplication\\src\\main.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|solutionrelative:reactapplication\\src\\main.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
+      "AbsoluteMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|d:\\workpracticv2\\reactapplication\\reactapplication\\src\\core\\json\\jsonapplicationlibrary.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
+      "RelativeMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|solutionrelative:reactapplication\\src\\core\\json\\jsonapplicationlibrary.ts||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|d:\\workpracticv2\\reactapplication\\reactapplication\\src\\app.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}",
-      "RelativeMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|solutionrelative:reactapplication\\src\\app.tsx||{0F2454B1-A556-402D-A7D0-1FDE7F99DEE0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|d:\\workpracticv2\\reactapplication\\reactapplication\\src\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|solutionrelative:reactapplication\\src\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|d:\\workpracticv2\\reactapplication\\reactapplication\\.vscode\\launch.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A0C8F787-05CF-4A09-8E60-4209FD64FF0F}|ReactApplication\\reactapplication.esproj|solutionrelative:reactapplication\\.vscode\\launch.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\WorkPracticV2\\ReactApplication\\reactapplication\\src\\index.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
@@ -42,15 +58,67 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 8,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Test1.ts",
+              "DocumentMoniker": "D:\\WorkPracticV2\\ReactApplication\\reactapplication\\src\\Test1.ts",
+              "RelativeDocumentMoniker": "reactapplication\\src\\Test1.ts",
+              "ToolTip": "D:\\WorkPracticV2\\ReactApplication\\reactapplication\\src\\Test1.ts",
+              "RelativeToolTip": "reactapplication\\src\\Test1.ts",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2024-07-16T10:49:28.848Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
+              "Title": "vite-env.d.ts",
+              "DocumentMoniker": "D:\\WorkPracticV2\\ReactApplication\\reactapplication\\src\\vite-env.d.ts",
+              "RelativeDocumentMoniker": "reactapplication\\src\\vite-env.d.ts",
+              "ToolTip": "D:\\WorkPracticV2\\ReactApplication\\reactapplication\\src\\vite-env.d.ts",
+              "RelativeToolTip": "reactapplication\\src\\vite-env.d.ts",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2024-07-16T11:15:02.442Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "config_file.ts",
+              "DocumentMoniker": "D:\\WorkPracticV2\\ReactApplication\\reactapplication\\src\\config_file.ts",
+              "RelativeDocumentMoniker": "reactapplication\\src\\config_file.ts",
+              "ToolTip": "D:\\WorkPracticV2\\ReactApplication\\reactapplication\\src\\config_file.ts",
+              "RelativeToolTip": "reactapplication\\src\\config_file.ts",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2024-07-15T15:47:56.76Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "JsonApplicationLibrary.ts",
+              "DocumentMoniker": "D:\\WorkPracticV2\\ReactApplication\\reactapplication\\src\\Core\\JSON\\JsonApplicationLibrary.ts",
+              "RelativeDocumentMoniker": "reactapplication\\src\\Core\\JSON\\JsonApplicationLibrary.ts",
+              "ToolTip": "D:\\WorkPracticV2\\ReactApplication\\reactapplication\\src\\Core\\JSON\\JsonApplicationLibrary.ts",
+              "RelativeToolTip": "reactapplication\\src\\Core\\JSON\\JsonApplicationLibrary.ts",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
+              "WhenOpened": "2024-07-15T15:46:29.108Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "launch.json",
               "DocumentMoniker": "D:\\WorkPracticV2\\ReactApplication\\reactapplication\\.vscode\\launch.json",
               "RelativeDocumentMoniker": "reactapplication\\.vscode\\launch.json",
@@ -58,61 +126,61 @@
               "RelativeToolTip": "reactapplication\\.vscode\\launch.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-07-15T15:26:00.716Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-15T15:26:00.716Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "Delegates.ts",
               "DocumentMoniker": "D:\\WorkPracticV2\\ReactApplication\\reactapplication\\src\\Core\\Other\\Delegates.ts",
               "RelativeDocumentMoniker": "reactapplication\\src\\Core\\Other\\Delegates.ts",
               "ToolTip": "D:\\WorkPracticV2\\ReactApplication\\reactapplication\\src\\Core\\Other\\Delegates.ts",
               "RelativeToolTip": "reactapplication\\src\\Core\\Other\\Delegates.ts",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAABAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
               "WhenOpened": "2024-07-15T14:10:26.226Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
               "Title": "JsonLibrary.ts",
               "DocumentMoniker": "D:\\WorkPracticV2\\ReactApplication\\reactapplication\\src\\Core\\JSON\\JsonLibrary.ts",
               "RelativeDocumentMoniker": "reactapplication\\src\\Core\\JSON\\JsonLibrary.ts",
               "ToolTip": "D:\\WorkPracticV2\\ReactApplication\\reactapplication\\src\\Core\\JSON\\JsonLibrary.ts",
               "RelativeToolTip": "reactapplication\\src\\Core\\JSON\\JsonLibrary.ts",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
               "WhenOpened": "2024-07-15T13:58:10.245Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "App.tsx",
               "DocumentMoniker": "D:\\WorkPracticV2\\ReactApplication\\reactapplication\\src\\App.tsx",
               "RelativeDocumentMoniker": "reactapplication\\src\\App.tsx",
               "ToolTip": "D:\\WorkPracticV2\\ReactApplication\\reactapplication\\src\\App.tsx",
               "RelativeToolTip": "reactapplication\\src\\App.tsx",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAAMAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2024-07-15T13:53:05.472Z"
+              "WhenOpened": "2024-07-15T13:53:05.472Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "Worker.ts",
               "DocumentMoniker": "D:\\WorkPracticV2\\ReactApplication\\reactapplication\\src\\Core\\Worker.ts",
               "RelativeDocumentMoniker": "reactapplication\\src\\Core\\Worker.ts",
               "ToolTip": "D:\\WorkPracticV2\\ReactApplication\\reactapplication\\src\\Core\\Worker.ts",
               "RelativeToolTip": "reactapplication\\src\\Core\\Worker.ts",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAbAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
               "WhenOpened": "2024-07-15T13:33:42.58Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 11,
               "Title": "index.css",
               "DocumentMoniker": "D:\\WorkPracticV2\\ReactApplication\\reactapplication\\src\\index.css",
               "RelativeDocumentMoniker": "reactapplication\\src\\index.css",
@@ -124,19 +192,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "main.tsx",
               "DocumentMoniker": "D:\\WorkPracticV2\\ReactApplication\\reactapplication\\src\\main.tsx",
               "RelativeDocumentMoniker": "reactapplication\\src\\main.tsx",
               "ToolTip": "D:\\WorkPracticV2\\ReactApplication\\reactapplication\\src\\main.tsx",
               "RelativeToolTip": "reactapplication\\src\\main.tsx",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003213|",
-              "WhenOpened": "2024-07-15T13:32:02.045Z"
+              "WhenOpened": "2024-07-15T13:32:02.045Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "App.css",
               "DocumentMoniker": "D:\\WorkPracticV2\\ReactApplication\\reactapplication\\src\\App.css",
               "RelativeDocumentMoniker": "reactapplication\\src\\App.css",
@@ -144,7 +213,8 @@
               "RelativeToolTip": "reactapplication\\src\\App.css",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-07-15T13:20:55.846Z"
+              "WhenOpened": "2024-07-15T13:20:55.846Z",
+              "EditorCaption": ""
             }
           ]
         }
