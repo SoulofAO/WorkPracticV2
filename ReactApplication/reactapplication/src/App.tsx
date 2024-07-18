@@ -4,28 +4,59 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import React, { useEffect } from 'react'
 import axios from 'axios'
-import GetWorkersRequest from "./Test1"
-
+import { GetWorkersRequest, LoginOnDrupal, GetAllPodrazdelenieOptionNames } from "./Test1"
+import { replaceVariablesByName, findVariablesByName } from "./Core/JSON/JsonLibrary"
+import { UEntityManager } from "./Core/JSON/JSONEntityManager"
+import { UWorker } from "./Core/Worker"
 
 export function App() {
-    useEffect(() => {
-        const fetchData = async () => {
-            const workers = await GetWorkersRequest();
+    const [workers, setWorkers] = useState<UWorker[]>([]);
+    const [selectedWorker, setSelectedWorker] = useState<UWorker| null>(null);
 
-            for (const val in workers.data) {
-                console.log(val)
-            }
-        }
-        fetchData();
-    });
+    const new_worker = new UWorker();
+    new_worker.name = "NewName"
+    workers.push(new_worker)
+    const new_workerv2 = new UWorker();
+    new_workerv2.name = "Newsafsag"
+    workers.push(new_workerv2)
+    const handleNewWorkerClick = () => {
+            // Логика для создания нового работника
+    };
+
+    const handleEditWorkerClick = () => {
+            // Логика для редактирования выбранного работника
+    };
+
+    const handleRemoveWorkerClick = () => {
+            // Логика для удаления выбранного работника
+    };
+
+    const handleWorkerClick = (worker) => {
+        console.log(worker.name)
+    };
 
     return (
-        <div>
-            <h1>Список пользователей:</h1>
+        <div style={{height: '100vh' }}>
+            <div style={{ marginBottom: '20px' }}>
+                <h1>Control Entity</h1>
+            </div>
+            <div>
+                <select name="select" size="12" multiple style={{ width: '200px' }}>
+
+                    {workers.map((worker, index) => (
+                        <option value={index} onClick={() => handleWorkerClick(worker)}>
+                            {worker.name}
+                        </option>
+                    ))}
+                </select>
+            </div>
+            <div style={{}}>
+                <button onClick={handleNewWorkerClick} style={{ marginBottom: '10px' }}>New</button>
+                <button onClick={handleEditWorkerClick} style={{ marginBottom: '10px' }}>Edit</button>
+                <button onClick={handleRemoveWorkerClick}>Delete</button>
+            </div>
         </div>
     );
-
-
 }
 
 

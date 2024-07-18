@@ -1,4 +1,4 @@
-class UDelegate {
+export class UDelegate {
     private handlers: Function[];
 
     constructor() {
