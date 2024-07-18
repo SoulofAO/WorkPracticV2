@@ -1,19 +1,30 @@
 import * as JsonApplicationLibrary from './JsonApplicationLibrary';
 import { UWorker } from '../Worker';
 import { UDelegate } from '../Other/Delegates';
+import * as config_file from "../../config_file"
 
 export class UEntityManager {
-    private workers: UWorker[] = [];
-    public new_worker_delegate: UDelegate = new UDelegate();
-    public remove_worker_delegate: UDelegate = new UDelegate();
+    public workers: UWorker[] = [];
+    public new_worker_delegate: UDelegate;
+    public remove_worker_delegate: UDelegate;
 
     constructor() {
+        this.new_worker_delegate = new UDelegate();
+        this.remove_worker_delegate = new UDelegate();
+    }
+
+    public async Initialization() {
         this.SetupUpdateTimer();
-        this.UpdateWorkers();
+        await this.UpdateWorkers();
     }
 
     private SetupUpdateTimer(): void {
-       setInterval(this.UpdateWorkers, 5.0);
+
+        setInterval(() => {
+            if (config_file.GetEntityManager() != null)
+            { config_file.GetEntityManager().UpdateWorkers() }},
+            5000.0);
+        
     }
 
     private FindWorkerInWorkersByName(worker_name: string, workers: UWorker[]): UWorker | null {
@@ -37,27 +48,39 @@ export class UEntityManager {
         this.remove_worker_delegate.Broadcast(worker);
     }
 
-    private async UpdateWorkers()
+    public async UpdateWorkers()
     {
         console.log("Update Complete");
         const new_workers: UWorker[] = [];
         const response = await JsonApplicationLibrary.GetWorkersRequest();
-        if (response.status === 200) {
+        if (response!=null && response.status === 200) {
             const body = await response.json();
-            for (const json_entity of body)
+            for (const json_entity of body.data)
             {
                 const worker = new UWorker();
                 worker.SerializeJSON(json_entity);
                 new_workers.push(worker);
-            };
+            }
         }
 
-        const workers_to_remove = this.workers.filter(worker =>
-            !this.FindWorkerInWorkersByID(worker.id, new_workers));
+        const workers_to_remove: UWorker[] = [];
+        for (const worker of this.workers)
+        {
+            if(!this.FindWorkerInWorkersByID(worker.id, new_workers))
+            { 
+                workers_to_remove.push(worker)
+            }
+        } 
         workers_to_remove.forEach(worker => this.RemoveWorkerFromWorkers(worker));
 
-        const workers_to_add = new_workers.filter(worker =>
-            !this.FindWorkerInWorkersByID(worker.id, this.workers));
+        const workers_to_add: UWorker[] = [];
+        for (const worker of new_workers)
+        {
+            if (!this.FindWorkerInWorkersByID(worker.id, this.workers))
+            {
+                workers_to_add.push(worker)
+            }
+        }
         workers_to_add.forEach(worker => this.AddWorkerInWorkers(worker));
     }
 

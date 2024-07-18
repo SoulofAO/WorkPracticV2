@@ -2,14 +2,13 @@ import * as config_file from '../../config_file';
 import axios from 'axios';
 import { replaceVariablesByName, findVariablesByName } from "./JsonLibrary"
 
-
+console.log("B3")
 export const GetWorkersRequest = async () => {
     const url = config_file.host_link + "/jsonapi/node/rabotnik";
 
     try {
         const response = await fetch(url);
-        const data = await response.json();
-        return data;
+        return response;
     } catch (error) {
         console.error(error);
         return null;
