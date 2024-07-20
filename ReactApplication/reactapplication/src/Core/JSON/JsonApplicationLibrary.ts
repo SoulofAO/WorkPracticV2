@@ -19,7 +19,7 @@ export const GetWorkersRequest = async () => {
 
 export const LoginOnDrupal = async () => {
     try {
-        const url = config_file.host_link + "/jsonapi/node/rabotnik";
+        const url = config_file.host_link + "/user/login";
         const response = await axios.post((url),
             {
                 name: 'Oleg',

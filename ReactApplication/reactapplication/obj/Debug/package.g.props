@@ -15,6 +15,7 @@
     <PackageJsonDependenciesReact Condition="$(PackageJsonDependenciesReact) == ''">^18.3.1</PackageJsonDependenciesReact>
     <PackageJsonDependenciesReactDom Condition="$(PackageJsonDependenciesReactDom) == ''">^18.3.1</PackageJsonDependenciesReactDom>
     <PackageJsonDependenciesReactDrupalJsonApi Condition="$(PackageJsonDependenciesReactDrupalJsonApi) == ''">^1.0.3</PackageJsonDependenciesReactDrupalJsonApi>
+    <PackageJsonDependenciesReactSelectCountryList Condition="$(PackageJsonDependenciesReactSelectCountryList) == ''">^2.2.3</PackageJsonDependenciesReactSelectCountryList>
     <PackageJsonDevdependenciesTypesNode Condition="$(PackageJsonDevdependenciesTypesNode) == ''">^20.14.10</PackageJsonDevdependenciesTypesNode>
     <PackageJsonDevdependenciesTypesReact Condition="$(PackageJsonDevdependenciesTypesReact) == ''">^18.3.3</PackageJsonDevdependenciesTypesReact>
     <PackageJsonDevdependenciesTypesReactDom Condition="$(PackageJsonDevdependenciesTypesReactDom) == ''">^18.3.0</PackageJsonDevdependenciesTypesReactDom>

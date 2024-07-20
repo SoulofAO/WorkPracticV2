@@ -88,21 +88,21 @@ export class UEntityManager {
         // Implementation not provided in the original code
     }
 
-    public DeleteWorker(worker: UWorker): void {
-        JsonApplicationLibrary.LoginOnDrupal();
-        JsonApplicationLibrary.DeleteWorker(worker);
+    public async DeleteWorker(worker: UWorker) {
+        await JsonApplicationLibrary.LoginOnDrupal();
+        await JsonApplicationLibrary.DeleteWorker(worker);
         this.UpdateWorkers();
     }
 
-    public NewWorker(worker: UWorker): void {
-        JsonApplicationLibrary.LoginOnDrupal();
-        JsonApplicationLibrary.PostNewWorker(worker);
+    public async NewWorker(worker: UWorker) {
+        await JsonApplicationLibrary.LoginOnDrupal();
+        await JsonApplicationLibrary.PostNewWorker(worker);
         this.UpdateWorkers();
     }
 
-    public PatchWorker(worker: UWorker): void {
-        JsonApplicationLibrary.LoginOnDrupal();
-        JsonApplicationLibrary.PatchWorker(worker);
+    public async PatchWorker(worker: UWorker) {
+        await JsonApplicationLibrary.LoginOnDrupal();
+        await JsonApplicationLibrary.PatchWorker(worker);
         this.UpdateWorkers();
     }
 }
