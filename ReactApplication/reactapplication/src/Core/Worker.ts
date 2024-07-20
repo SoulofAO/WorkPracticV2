@@ -141,11 +141,10 @@ export class UWorker {
 
     public DeserializeJSON(): any {
         const body = newWorkerExample;
-        JsonLibrary.replaceVariablesByName(body, "title", this.name);
-        JsonLibrary.replaceVariablesByName(body, 'field_pochta', this.email);
+        JsonLibrary.replaceVariablesByName(body, "title", this.name, 0);
+        JsonLibrary.replaceVariablesByName(body, 'field_pochta', this.email, 0);
         JsonLibrary.replaceVariablesByName(body, 'field_strana', this.country, 0);
-        JsonLibrary.replaceVariablesByName(body, 'field_podrazdelenie', this.podrazdelenie);
-        JsonLibrary.replaceVariablesByName(body, 'field_podrazdelenie', this.podrazdelenie);
+        JsonLibrary.replaceVariablesByName(body, 'field_podrazdelenie', this.podrazdelenie, 0);
         return body;
     }
 

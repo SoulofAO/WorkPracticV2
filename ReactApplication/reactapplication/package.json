@@ -9,6 +9,9 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
+  "jest": {
+    "testURL": "http://localhost/drupal"
+  },
   "dependencies": {
     "axios": "^1.7.2",
     "cors": "^2.8.5",

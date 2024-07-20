@@ -9,12 +9,14 @@
     <PackageJsonScriptsBuild Condition="$(PackageJsonScriptsBuild) == ''">tsc -b &amp;&amp; vite build</PackageJsonScriptsBuild>
     <PackageJsonScriptsLint Condition="$(PackageJsonScriptsLint) == ''">eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0</PackageJsonScriptsLint>
     <PackageJsonScriptsPreview Condition="$(PackageJsonScriptsPreview) == ''">vite preview</PackageJsonScriptsPreview>
+    <PackageJsonJestTesturl Condition="$(PackageJsonJestTesturl) == ''">http://localhost/drupal</PackageJsonJestTesturl>
     <PackageJsonDependenciesAxios Condition="$(PackageJsonDependenciesAxios) == ''">^1.7.2</PackageJsonDependenciesAxios>
     <PackageJsonDependenciesCors Condition="$(PackageJsonDependenciesCors) == ''">^2.8.5</PackageJsonDependenciesCors>
     <PackageJsonDependenciesExpress Condition="$(PackageJsonDependenciesExpress) == ''">^4.19.2</PackageJsonDependenciesExpress>
     <PackageJsonDependenciesReact Condition="$(PackageJsonDependenciesReact) == ''">^18.3.1</PackageJsonDependenciesReact>
     <PackageJsonDependenciesReactDom Condition="$(PackageJsonDependenciesReactDom) == ''">^18.3.1</PackageJsonDependenciesReactDom>
     <PackageJsonDependenciesReactDrupalJsonApi Condition="$(PackageJsonDependenciesReactDrupalJsonApi) == ''">^1.0.3</PackageJsonDependenciesReactDrupalJsonApi>
+    <PackageJsonDependenciesReactSelectCountryList Condition="$(PackageJsonDependenciesReactSelectCountryList) == ''">^2.2.3</PackageJsonDependenciesReactSelectCountryList>
     <PackageJsonDevdependenciesTypesNode Condition="$(PackageJsonDevdependenciesTypesNode) == ''">^20.14.10</PackageJsonDevdependenciesTypesNode>
     <PackageJsonDevdependenciesTypesReact Condition="$(PackageJsonDevdependenciesTypesReact) == ''">^18.3.3</PackageJsonDevdependenciesTypesReact>
     <PackageJsonDevdependenciesTypesReactDom Condition="$(PackageJsonDevdependenciesTypesReactDom) == ''">^18.3.0</PackageJsonDevdependenciesTypesReactDom>

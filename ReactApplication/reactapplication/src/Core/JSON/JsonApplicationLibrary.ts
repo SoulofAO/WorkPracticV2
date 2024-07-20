@@ -2,10 +2,9 @@ import * as config_file from '../../config_file';
 import axios from 'axios';
 import { replaceVariablesByName, findVariablesByName } from "./JsonLibrary"
 
-console.log("B3")
 export const GetWorkersRequest = async () => {
     const url = config_file.host_link + "/jsonapi/node/rabotnik";
-
+    //axios.defaults.withCredentials = true
     try {
         const response = await fetch(url);
         return response;
@@ -15,23 +14,41 @@ export const GetWorkersRequest = async () => {
     }
 };
 
+export const GetTokenRequest = async () => {
+    const url = config_file.host_link + "/session/token";
+    try {
+        const response = await fetch(url);
+        return await response.text();
+    } catch (error) {
+        console.error(error);
+        return "None";
+    }
+};
+
 
 
 export const LoginOnDrupal = async () => {
     try {
+
+        const session = axios.create()
+        session.defaults.withCredentials = true
+        session.defaults.xsrfCookieName = "Cookie"
+        config_file.SetSession(session)
         const url = config_file.host_link + "/user/login";
-        const response = await axios.post((url),
+        const response = await session.post((url),
             {
                 name: 'Oleg',
                 pass: '12099021qQ!!!'
             },
             {
+                
                 params: {
                     _format: 'json'
                 },
                 headers: {
-                    'Content-Type': 'application/vnd.api+json'
-                }
+                    'Content-Type': 'application/vnd.api+json',
+                    
+                },
             }
         );
 
@@ -40,6 +57,7 @@ export const LoginOnDrupal = async () => {
             console.log(data);
             const csrfToken = data.csrf_token;
             config_file.SetCsrf_Token(csrfToken);
+
         } else {
             console.error('Error executing LOGIN request:');
             console.error("Error status code: " + String(response.status));
@@ -47,7 +65,7 @@ export const LoginOnDrupal = async () => {
         }
     }
     catch (error) {
-        console.error('An error occurred:', error);
+        console.error('An error LOGIN occurred:', error);
     }
 
     return null;
@@ -55,27 +73,32 @@ export const LoginOnDrupal = async () => {
 
 
 export const PostNewWorker = async (newWorker: NewWorker): Promise<void> => {
-    const url = config_file.host_link + "/jsonapi/node/rabotnik";
-    const body = newWorker.DeserializeJSON();
-    const headers = {
-        'Content-Type': 'application/vnd.api+json',
-        'X-CSRF-Token': String(config_file.GetCsrf_Token())
-    };
+    const session = config_file.GetSession()
+    if (session != null)
+    {
+        const url = config_file.host_link + "/jsonapi/node/rabotnik";
+        const body = newWorker.DeserializeJSON();
+        const headers = {
+            'Content-Type': 'application/vnd.api+json',
+            'X-CSRF-Token':config_file.GetCsrf_Token(),
+                    withCredentials: true
+        };
 
-    try {
-        const response = await axios.post(url, body, { headers });
+        try {
+            const response = await session.post(url, body, { headers });
 
-        if (response.status === 201) {
-            const newPost = response.data;
-            console.log("New Worker Create");
-            console.log(newPost);
-        } else {
-            console.error('Error executing POST request:');
-            console.error("Error status code: " + String(response.status));
-            console.error("Error text: " + String(response.data));
+            if (response.status === 201) {
+                const newPost = response.data;
+                console.log("New Worker Create");
+                console.log(newPost);
+            } else {
+                console.error('Error executing POST request:');
+                console.error("Error status code: " + String(response.status));
+                console.error("Error text: " + String(response.data));
+            }
+        } catch (error) {
+            console.error('An error POST occurred:', error);
         }
-    } catch (error) {
-        console.error('An error occurred:', error);
     }
 };
 

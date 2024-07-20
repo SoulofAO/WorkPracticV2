@@ -62,6 +62,7 @@ export class WorkerWidget extends React.Component {
         const email = this.inputEmailRef.current.value;
         const podrazdelenie = this.inputPodrazdelenieRef.current.value;
         const country = this.selectCountryRef.current.value;
+        const countrySmall = this.countryShortNames[this.countryFullNames.indexOf(country)]
         const position = this.selectPositionRef.current.value;
         if (!isValidName(name)) {
             this.ShowError("Error: Wrong Name")
@@ -75,13 +76,12 @@ export class WorkerWidget extends React.Component {
                 this.worker.name = name;
                 this.worker.email = email;
                 this.worker.podrazdelenie = podrazdelenie;
-                country = this.countryShortNames[this.countryFullNames.indexOf(country)]
-                this.worker.country = country;
+                this.worker.country = countrySmall;
                 this.worker.position = position;
                 config_file.GetEntityManager()?.PatchWorker(this.worker)
             }
             else {
-                const newWorker = new UWorker(name, email, country, position, podrazdelenie);
+                const newWorker = new UWorker(name, email, countrySmall, position, podrazdelenie);
                 config_file.GetEntityManager()?.NewWorker(newWorker);
             }
         }

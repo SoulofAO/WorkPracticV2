@@ -1,8 +1,8 @@
 import { UEntityManager } from "./Core/JSON/JSONEntityManager"
-
+import {AxiosInstance} from 'axios';
 export const host_link: string = "http://localhost/drupal";
 export let csrf_token: string = "None";
-export let session: object | null = null;
+export let session: AxiosInstance | null = null;
 export let EntityManager: UEntityManager | null = null;
 
 
@@ -14,11 +14,11 @@ export function SetCsrf_Token(newValue: string): void {
     csrf_token = newValue;
 }
 
-export function GetSession(): object | null {
+export function GetSession(): AxiosInstance | null {
     return session;
 }
 
-export function SetSession(newValue: object): void {
+export function SetSession(newValue: AxiosInstance): void {
     session = newValue;
 }
 
