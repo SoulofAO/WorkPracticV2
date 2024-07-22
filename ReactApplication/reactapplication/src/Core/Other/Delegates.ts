@@ -5,11 +5,17 @@ export class UDelegate {
         this.handlers = [];
     }
 
+    public RemoveHandlerByName(handler: Function): void {
+        const removeIndex = this.handlers.findIndex(handler => handler.name === handler.name);
+        if (removeIndex >= 0) {
+            this.handlers.splice(removeIndex, 1);
+        }
+    }
 
     public RemoveHandler(handler: Function): void {
-        const Remove_index = this.handlers.indexOf(handler)
-        if (Remove_index > 0) {
-            this.handlers.splice(Remove_index);
+        const removeIndex = this.handlers.indexOf(handler);
+        if (removeIndex >= 0) {
+            this.handlers.splice(removeIndex, 1);
         }
     }
 

@@ -1,15 +1,9 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import React, { useEffect } from 'react'
-import axios from 'axios'
-import { GetWorkersRequest, LoginOnDrupal, GetAllPodrazdelenieOptionNames } from "./Test1"
-import { replaceVariablesByName, findVariablesByName } from "./Core/JSON/JsonLibrary"
-import { UEntityManager } from "./Core/JSON/JSONEntityManager"
+import React from 'react'
 import { UWorker } from "./Core/Worker"
 import * as config_file from "./config_file"
 import {WorkerWidget} from "./WorkerWidget"
+import {UDelegate} from "./Core/Other/Delegates"
 
 enum EActionStatus
 {
@@ -27,13 +21,14 @@ export class App extends React.Component {
         super();
         this.workers = []
         this.actionStatus = EActionStatus.None
-        if (config_file.GetEntityManager() != null)
+        this.WorkerWidgetRef = React.createRef();
+        if (config_file.GetWorkerEntityManager() != null)
         {
-            config_file.GetEntityManager()?.new_worker_delegate.RemoveHandler(this.handleNewWorkerRecive);
-            config_file.GetEntityManager()?.remove_worker_delegate.RemoveHandler(this.handleRemoveWorkerRecive);
-            config_file.GetEntityManager()?.new_worker_delegate.AddHandler(this.handleNewWorkerRecive);
-            config_file.GetEntityManager()?.remove_worker_delegate.AddHandler(this.handleRemoveWorkerRecive);
-            this.workers = config_file.GetEntityManager()?.workers;
+            config_file.GetWorkerEntityManager()?.new_entity_delegate.RemoveHandlerByName(this.handleNewWorkerRecive);
+            config_file.GetWorkerEntityManager()?.remove_entity_delegate.RemoveHandlerByName(this.handleRemoveWorkerRecive);
+            config_file.GetWorkerEntityManager()?.new_entity_delegate.AddHandler(this.handleNewWorkerRecive);
+            config_file.GetWorkerEntityManager()?.remove_entity_delegate.AddHandler(this.handleRemoveWorkerRecive);
+            this.workers = config_file.GetWorkerEntityManager()?.workers.slice();
         }
         
     }
@@ -70,7 +65,12 @@ export class App extends React.Component {
 
 
     handleRemoveWorkerClick = () => {
-        // Логика для удаления выбранного работника
+        this.actionStatus = EActionStatus.None;
+        const deleteWorkers = this.GetSelectedWorkers();
+        for (const worker of deleteWorkers)
+        {
+            config_file.GetWorkerEntityManager()?.DeleteWorker(worker);
+        }
     }
 
     GetSelectedWorkers = (): UWorker[] =>
@@ -89,13 +89,20 @@ export class App extends React.Component {
         }
         const workerResults = [];
         for (const select_index of result) {
-            workerResults.push(config_file.GetEntityManager()?.workers[Number(select_index)])
+            workerResults.push(config_file.GetWorkerEntityManager().workers[Number(select_index)])
         }
+
         return workerResults;
     }
 
     handleWorkerClick = (worker) => {
         this.lastSelectedWorker = worker;
+        if(this.WorkerWidgetRef.current)
+        {
+            this.WorkerWidgetRef.current.SetWorker(this.lastSelectedWorker);
+        }
+        this.forceUpdate()
+        
     }
 
     render()
@@ -122,7 +129,7 @@ export class App extends React.Component {
                     <button onClick={this.handleClearWorkerPanelClick}>Exit</button>
                 </div>
                 <div key={1}>
-                    {(this.actionStatus == EActionStatus.Edit && this.lastSelectedWorker && this.GetSelectedWorkers().length>0) && <WorkerWidget worker={this.lastSelectedWorker}/>}
+                    {(this.actionStatus == EActionStatus.Edit && this.lastSelectedWorker && this.GetSelectedWorkers().length>0) && <WorkerWidget worker={this.lastSelectedWorker} ref={this.WorkerWidgetRef}/>}
                 </div>
                 <div key={2}>
                     {(this.actionStatus == EActionStatus.New) && <WorkerWidget worker={null}/>}

@@ -1,15 +1,39 @@
 import * as config_file from '../../config_file';
 import axios from 'axios';
-import { replaceVariablesByName, findVariablesByName } from "./JsonLibrary"
+import { UWorker } from '../Worker';
+import base64 from 'base-64';
 
-export const GetWorkersRequest = async () => {
+const username = 'Oleg';
+const password = '12099021qQ!!!';
+const credentials = username + ":" + password;
+const encodedCredentials = base64.encode(credentials);
+
+export const GetWorkersRequest = async () =>
+{
+
+
     const url = config_file.host_link + "/jsonapi/node/rabotnik";
-    //axios.defaults.withCredentials = true
+
+    const config = {
+        headers: {
+            'Content-Type': 'application/vnd.api+json',
+            'Authorization': 'Basic ' + encodedCredentials 
+        }
+    };
+
     try {
-        const response = await fetch(url);
-        return response;
+        const response = await axios.get(url, config);
+
+        if (response.status === 200) {
+            return response;
+        } else {
+            console.log('Error executing GET request');
+            console.log("Error status code: " + response.status);
+            console.log("Error text: " + response.data);
+            return null;
+        }
     } catch (error) {
-        console.error(error);
+        console.error('An error occurred:', error);
         return null;
     }
 };
@@ -25,89 +49,39 @@ export const GetTokenRequest = async () => {
     }
 };
 
+export const PostNewWorker = async (newWorker: UWorker): Promise<void> => {
+    const url = config_file.host_link + "/jsonapi/node/rabotnik";
+    const body = newWorker.DeserializeJSON();
+    console.log(body);
+    const headers = {
+        'Content-Type': 'application/vnd.api+json',
+        'Authorization': 'Basic ' + encodedCredentials
+    };
 
-
-export const LoginOnDrupal = async () => {
     try {
+        const response = await axios.post(url, body, { headers });
 
-        const session = axios.create()
-        session.defaults.withCredentials = true
-        session.defaults.xsrfCookieName = "Cookie"
-        config_file.SetSession(session)
-        const url = config_file.host_link + "/user/login";
-        const response = await session.post((url),
-            {
-                name: 'Oleg',
-                pass: '12099021qQ!!!'
-            },
-            {
-                
-                params: {
-                    _format: 'json'
-                },
-                headers: {
-                    'Content-Type': 'application/vnd.api+json',
-                    
-                },
-            }
-        );
-
-        if (response.status === 200) {
-            const data = response.data;
-            console.log(data);
-            const csrfToken = data.csrf_token;
-            config_file.SetCsrf_Token(csrfToken);
-
+        if (response.status === 201) {
+            const newPost = response.data;
+            console.log("New Worker Create");
+            console.log(newPost);
         } else {
-            console.error('Error executing LOGIN request:');
+            console.error('Error executing POST request:');
             console.error("Error status code: " + String(response.status));
             console.error("Error text: " + String(response.data));
         }
-    }
-    catch (error) {
-        console.error('An error LOGIN occurred:', error);
-    }
-
-    return null;
-};
-
-
-export const PostNewWorker = async (newWorker: NewWorker): Promise<void> => {
-    const session = config_file.GetSession()
-    if (session != null)
-    {
-        const url = config_file.host_link + "/jsonapi/node/rabotnik";
-        const body = newWorker.DeserializeJSON();
-        const headers = {
-            'Content-Type': 'application/vnd.api+json',
-            'X-CSRF-Token':config_file.GetCsrf_Token(),
-                    withCredentials: true
-        };
-
-        try {
-            const response = await session.post(url, body, { headers });
-
-            if (response.status === 201) {
-                const newPost = response.data;
-                console.log("New Worker Create");
-                console.log(newPost);
-            } else {
-                console.error('Error executing POST request:');
-                console.error("Error status code: " + String(response.status));
-                console.error("Error text: " + String(response.data));
-            }
-        } catch (error) {
-            console.error('An error POST occurred:', error);
-        }
+    } catch (error) {
+        console.error('An error POST occurred:', error);
     }
 };
 
 
 
-export const DeleteWorker = async (remove_Worker: NewWorker): Promise<void> => {
-    const url = config_file.host_link + "/jsonapi/node/rabotnik" + "/" + remove_Worker.id;
+export const DeleteWorker = async (removeWorker: UWorker): Promise<void> => {
+    const url = config_file.host_link + "/jsonapi/node/rabotnik" + "/" + removeWorker.id;
     const headers = {
-        'X-CSRF-Token': String(config_file.GetCsrf_Token())
+        'Content-Type': 'application/vnd.api+json',
+        'Authorization': 'Basic ' + encodedCredentials
     };
 
     try {
@@ -125,12 +99,12 @@ export const DeleteWorker = async (remove_Worker: NewWorker): Promise<void> => {
     }
 };
 
-export const PatchWorker = async (patch_Worker: NewWorker): Promise<void> => {
-    const url = config_file.host_link + "/jsonapi/node/rabotnik" + "/" + remove_Worker.id;
-    const body = patch_Worker.DeserializePatchJSON();
+export const PatchWorker = async (patchWorker: UWorker): Promise<void> => {
+    const url = config_file.host_link + "/jsonapi/node/rabotnik" + "/" + patchWorker.id;
+    const body = patchWorker.DeserializePatchJSON();
     const headers = {
         'Content-Type': 'application/vnd.api+json',
-        'X-CSRF-Token': String(config_file.GetCsrf_Token())
+        'Authorization': 'Basic ' + encodedCredentials
     };
 
 
@@ -150,32 +124,29 @@ export const PatchWorker = async (patch_Worker: NewWorker): Promise<void> => {
 };
 
 
-export const GetAllPodrazdelenieOptions = async () => {
-    const url = config_file.host_link + '/jsonapi/taxonomy_term/tip_podrazdeleniya';
+export const GetWorkPositionsRequest = async () => {
+    const url = config_file.host_link + '/jsonapi/taxonomy_term/tip_dolzhnosti';
+
+    const config = {
+        headers: {
+            'Content-Type': 'application/vnd.api+json',
+            'Authorization': 'Basic ' + encodedCredentials
+        }
+    };
 
     try {
-        const response = await fetch(url);
-        return response;
-    } catch (error) {
-        console.error(error);
-        return null;
-    }
-};
+        const response = await axios.get(url, config);
 
-export const GetAllPodrazdelenieOptionNames = async () => {
-    const response = await GetAllPodrazdelenieOptions();
-    if (response != null && response.status === 200) {
-        const items: string[] = [];
-        const body = await response.json();
-        for (const val of body.data) {
-            const option: string = String(findVariablesByName(val, "name"));
-            items.push(option);
+        if (response.status === 200) {
+            return response;
+        } else {
+            console.log('Error executing GET request');
+            console.log("Error status code: " + response.status);
+            console.log("Error text: " + response.data);
+            return null;
         }
-        return items;
-
-    }
-    else {
-        const items: string[] = ["None"];
-        return items;
+    } catch (error) {
+        console.error('An error occurred:', error);
+        return null;
     }
 };

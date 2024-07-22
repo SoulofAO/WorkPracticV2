@@ -2,7 +2,6 @@ import { UWorker } from "./Core/Worker"
 import React, { useEffect, useRef, useMemo } from 'react'
 import './WorkerWidget.css'
 import countryList from 'react-select-country-list'
-import { GetAllPodrazdelenieOptionNames } from './Core/JSON/JsonApplicationLibrary'
 import * as config_file from './config_file'
 
 function isValidEmail(email) {
@@ -25,7 +24,6 @@ export class WorkerWidget extends React.Component {
 
     public worker: UWorker | null = null;
     
-
     constructor(props)
     {
         super(props);
@@ -38,15 +36,16 @@ export class WorkerWidget extends React.Component {
         this.errorLabelRef = React.createRef();
         this.countryOptions = countryList().getData();
         this.countryFullNames = []
-        for (let country of this.countryOptions)
+        
+        for (const country of this.countryOptions)
         {
             this.countryFullNames.push(country.label)
         }
         this.countryShortNames = []
-        for (let country of this.countryOptions) {
+        for (const country of this.countryOptions) {
             this.countryShortNames.push(country.value)
         } 
-        this.podrazdelenieOptions = [];
+        this.workPositionNames = config_file.GetWorkPositionEntityManager().GetWorkerNames()
     }
 
 
@@ -55,7 +54,18 @@ export class WorkerWidget extends React.Component {
         this.forceUpdate();
     }
 
-
+    
+    SetWorker = (worker : UWorker) => 
+    {
+        this.worker = worker;
+        this.inputNameRef.current.value = this.GetWorkerName();
+        this.inputEmailRef.current.value = this.GetWorkerEmail();
+        this.inputPodrazdelenieRef.current.value = this.GetWorkerPodrazdelenie();
+        this.selectCountryRef.current.value = this.GetWorkerCountry();
+        this.selectPositionRef.current.value = this.GetWorkerPosition();
+        
+        this.forceUpdate();
+    }
 
     HandleEditClick = () => {
         const name = this.inputNameRef.current.value;
@@ -64,6 +74,9 @@ export class WorkerWidget extends React.Component {
         const country = this.selectCountryRef.current.value;
         const countrySmall = this.countryShortNames[this.countryFullNames.indexOf(country)]
         const position = this.selectPositionRef.current.value;
+        const positionObject = config_file.GetWorkPositionEntityManager()?.FindWorkPositionByName(position, config_file.GetWorkPositionEntityManager()?.workPositions);
+
+
         if (!isValidName(name)) {
             this.ShowError("Error: Wrong Name")
         }
@@ -72,17 +85,18 @@ export class WorkerWidget extends React.Component {
         }
         else
         {
+            this.ShowError("")
             if (this.worker) {
                 this.worker.name = name;
                 this.worker.email = email;
                 this.worker.podrazdelenie = podrazdelenie;
                 this.worker.country = countrySmall;
-                this.worker.position = position;
-                config_file.GetEntityManager()?.PatchWorker(this.worker)
+                this.worker.workPosition = positionObject;
+                config_file.GetWorkerEntityManager()?.PatchWorker(this.worker)
             }
             else {
-                const newWorker = new UWorker(name, email, countrySmall, position, podrazdelenie);
-                config_file.GetEntityManager()?.NewWorker(newWorker);
+                const newWorker = new UWorker(name, email, countrySmall, positionObject, podrazdelenie);
+                config_file.GetWorkerEntityManager()?.NewWorker(newWorker);
             }
         }
     };
@@ -115,8 +129,8 @@ export class WorkerWidget extends React.Component {
     };
 
     GetWorkerPosition = () => {
-        if (this.worker) {
-            return this.worker.work_position;
+        if (this.worker && this.worker.workPosition) {
+            return this.worker.workPosition.name;
         }
         else {
             return "None"
@@ -132,15 +146,6 @@ export class WorkerWidget extends React.Component {
         }
     };
 
-    async componentDidMount() {
-        this.podrazdelenieOptions = await GetAllPodrazdelenieOptionNames();
-        this.selectCountryRef.current.value = this.GetWorkerCountry();
-        this.selectPositionRef.current.value = this.GetWorkerPosition();
-        this.ShowError("")
-        this.forceUpdate();
-    }
-
-
     render()
     { 
         return(
@@ -155,12 +160,12 @@ export class WorkerWidget extends React.Component {
                         </tr>
                         <tr>  
                             <th> <label id="EmailTextLabel">Email:</label></th>
-                            <th> <input type="email" id="EmailTextInput" ref={this.inputEmailRef}  defaultValue={this.GetWorkerCountry()} /></th>
+                            <th> <input type="email" id="EmailTextInput" ref={this.inputEmailRef}  defaultValue={this.GetWorkerEmail()} /></th>
                         </tr> 
                         <tr>
                             <th> <label id="CountryTextLabel">Country:</label></th>
                             <th>
-                                <select id="CountrySelectInput" ref={this.selectCountryRef} >
+                                <select id="CountrySelectInput" ref={this.selectCountryRef} defaultValue={this.GetWorkerCountry()}>
                                     {this.countryFullNames.map(countryName => (
                                         <option key={countryName} value={countryName}>
                                             {countryName}
@@ -172,10 +177,10 @@ export class WorkerWidget extends React.Component {
                         <tr>
                             <th> <label id="PositionTextLabel"> working position </label></th>
                             <th>
-                                <select id="PositionSelectInput" ref={this.selectPositionRef}>
-                                    {this.podrazdelenieOptions.map(podrazdelenieName => (
-                                        <option key={podrazdelenieName} value={podrazdelenieName}>
-                                            {podrazdelenieName}
+                                <select id="PositionSelectInput" ref={this.selectPositionRef} defaultValue={this.GetWorkerPosition()}>
+                                    {this.workPositionNames.map(workPositionName => (
+                                        <option key={workPositionName} value={workPositionName}>
+                                            {workPositionName}
                                         </option>
                                     ))}
                                 </select>
@@ -190,7 +195,7 @@ export class WorkerWidget extends React.Component {
                         </tbody>
                 </table>
                 <div>
-                    <label id="ErrorTextLabel" class='required' ref={this.errorLabelRef}> Error</label>
+                    <label id="ErrorTextLabel" className='required' ref={this.errorLabelRef}> </label>
                 </div>
             </div>
         );

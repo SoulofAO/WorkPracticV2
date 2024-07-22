@@ -1,31 +1,22 @@
-import { UEntityManager } from "./Core/JSON/JSONEntityManager"
+import { UWorkerEntityManager } from "./Core/JSON/JSONWorkerManager"
+import { UWorkPositionEntityManager } from "./Core/JSON/JSONWorkPositionManager"
 import {AxiosInstance} from 'axios';
 export const host_link: string = "http://localhost/drupal";
-export let csrf_token: string = "None";
-export let session: AxiosInstance | null = null;
-export let EntityManager: UEntityManager | null = null;
+export let WorkerEntityManager: UWorkerEntityManager | null = null;
+export let WorkPositionEntityManager: UWorkPositionEntityManager | null = null;
 
-
-export function GetCsrf_Token(): string {
-    return csrf_token;
+export function GetWorkPositionEntityManager(): UWorkPositionEntityManager | null {
+    return WorkPositionEntityManager;
 }
 
-export function SetCsrf_Token(newValue: string): void {
-    csrf_token = newValue;
+export function SetWorkPositionEntityManager(newValue: UWorkPositionEntityManager): void {
+    WorkPositionEntityManager = newValue;
 }
 
-export function GetSession(): AxiosInstance | null {
-    return session;
+export function GetWorkerEntityManager(): UWorkerEntityManager | null {
+    return WorkerEntityManager;
 }
 
-export function SetSession(newValue: AxiosInstance): void {
-    session = newValue;
-}
-
-export function GetEntityManager(): UEntityManager | null {
-    return EntityManager;
-}
-
-export function SetEntityManager(newValue: UEntityManager): void {
-    EntityManager = newValue;
+export function SetWorkerEntityManager(newValue: UWorkerEntityManager): void {
+    WorkerEntityManager = newValue;
 }
