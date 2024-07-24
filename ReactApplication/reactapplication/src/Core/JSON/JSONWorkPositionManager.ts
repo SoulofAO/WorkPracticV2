@@ -1,14 +1,16 @@
 import * as JsonApplicationLibrary from './JsonApplicationLibrary';
 import { UEntityManager } from "./JSONEntityManager"
 import { UWorkPosition } from "../Worker"
-
+//Тип UEntityManager обслуживающий всех workPosition.Читайте общее устройство в  описании абстрактного класса UEntityManager.
+//The type of UEntityManager serving all workPositio. Read the general device in the description of the abstract UEntityManager class.
 export class UWorkPositionEntityManager extends UEntityManager {
 
     public workPositions: UWorkPosition[] = [];
     constructor() {
         super();
     }
-
+    //HelperFunctions
+    //Вспомогательные функции
     public GetWorkerNames(): string[] {
         const names : string[]=[]
         for (const workPosition of this.workPositions) {
@@ -25,6 +27,8 @@ export class UWorkPositionEntityManager extends UEntityManager {
         return workPositions.find(workPosition => workPosition.name === workPositionName) || null;
     }
 
+    //Функции добавления или удаления WorkPosition в локальную копию. Вызывает делегат, на который могут быть подписаны Widgets.
+    //Functions for adding or removing Worker to a local copy. Calls the delegate that may Widgets are subscribed to.
     private AddWorkPosition(workPosition: UWorkPosition): void {
         this.workPositions.push(workPosition);
         this.new_entity_delegate.Broadcast(workPosition);
@@ -38,7 +42,8 @@ export class UWorkPositionEntityManager extends UEntityManager {
         this.remove_entity_delegate.Broadcast(workPosition);
     }
 
-
+    //Принцип таков. Entity Manager получает все необходимые сущности, инициализирует их и проверяет их существование в своей копии. В случае новой копии или отсутсвия копии, добавляет ее или удаляет.
+    //The principle is as follows.Entity Manager gets all the necessary entities, initializes them and checks their existence in its copy. In case of a new copy or missing copy, add it or delete it.
     public async UpdateEntity() {
         const newWorkPositions: UWorkPosition[] = [];
         const response = await JsonApplicationLibrary.GetWorkPositionsRequest();

@@ -3,6 +3,21 @@ import * as fs from 'fs';
 import * as JSONApplicationLibrary from './JSON/JsonApplicationLibrary'
 import * as config_file from '../config_file'
 
+/*
+    Это примеры того, как должна выглядеть итоговая Body запроса в Drupal. 
+    Дело в том, что данная запись содержит огромное количество переменных.
+    Поэтому вместо того что бы конструировать ее с нуля я беру существующую в качестве примера и заменяю там элементы. 
+    patchWorkerExample используется для обновления существующего Worker и за его Body отвечает DeserializePatchJSON, 
+    newWorkerExample используется для создание нового Worker и за его Body отвечает DeserializeJSON
+
+
+    These are examples of what the final Request Body in Drupal should look like.
+    The fact is that this record contains many variables. 
+    Therefore, instead of designing it from scratch, I take the existing one as an example and replace the elements there.
+    patchWorkerExample is used to update an existing Worker and DeserializePatchJSON is responsible for its Body, 
+    newWorkerExample is used to create a new Worker and DeserializeJSON is responsible for its Body
+*/
+
 const patchWorkerExample =
 {
     "data":
@@ -131,7 +146,8 @@ const newWorkerExample =
             }
         }
     } 
-
+// Work Position. Используется для представления Taxonomy Work Position на стороне Client. Обрабатывается UWorkPositionEntityManager.
+// Work Position. It is used to represent the Taxonomy Work Position on the Client side. The UWorkPositionEntityManager is being processed.
 export class UWorkPosition
 {
     public name: string;
@@ -142,6 +158,8 @@ export class UWorkPosition
         this.id = id;
     }
 
+    // Преобразование данных из JSON в свойства объекта
+    // Converting data from JSON to object properties
     public async SerializeJSON(json: any): void {
         this.name = String(JsonLibrary.findVariablesByName(json, 'name')[0]);
         this.id = String(JsonLibrary.findVariablesByName(json, 'id')[0]);
@@ -149,6 +167,9 @@ export class UWorkPosition
 
 
 }
+
+// Worker. Используется для представления типа материала Worker на стороне Client. Обрабатывается UWorkerEntityManager.
+// Worker. It is used to represent the type of Worker material on the Client side. The UWorkerEntityManager is being processed.
 export class UWorker {
     public name: string;
     public email: string;
@@ -166,6 +187,8 @@ export class UWorker {
         this.id = id;
     }
 
+    // Преобразование данных из JSON в свойства объекта
+    // Converting data from JSON to object properties
     public SerializeJSON(json: any): void {
         this.name = String(JsonLibrary.findVariablesByName(json, 'title')[0]);
         this.id = String(JsonLibrary.findVariablesByName(json, 'id')[0]);
@@ -176,6 +199,8 @@ export class UWorker {
         this.workPosition = config_file.GetWorkPositionEntityManager().FindWorkPositionByID(workPositionID, config_file.GetWorkPositionEntityManager()?.workPositions);
     }
 
+    // Преобразование обьекта в Json для создания нового Worker на стороне сервера.
+    //Converting an object to Json to create a new Worker on the server side.
     public DeserializeJSON(): any {
         const body = newWorkerExample;
         JsonLibrary.replaceVariablesByName(body, "title", this.name, 0);
@@ -187,6 +212,9 @@ export class UWorker {
         JsonLibrary.replaceVariablesByName(body, 'field_tip_dolzhnosti', workPositionData, 0);
         return body;
     }
+
+    // Преобразование обьекта в Json для обновления Worker на стороне сервера.
+    // Converting an object to Json for updating Worker on the server side.
 
     public DeserializePatchJSON(): any {
         const body = patchWorkerExample;

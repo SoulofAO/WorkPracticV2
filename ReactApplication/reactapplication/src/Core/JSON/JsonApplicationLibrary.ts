@@ -3,11 +3,33 @@ import axios from 'axios';
 import { UWorker } from '../Worker';
 import base64 from 'base-64';
 
+/*
+    Этот модуль содержит функции для простой обработки JSON В КОНТЕКСТЕ ПРИЛОЖЕНИЯ. 
+    Обеспечивает связь между программой и сервером Drupal.
+
+    Зависимости:
+    Worker
+    config_file
+*/
+
+/* 
+    This module contains functions for simple processing of JSON ON APP context. 
+    Provides communication between the program and the Drupal server.
+
+    Depends:
+    Worker
+    config_file
+*/
+
+
+//Процесс Login подробно описан в моей документации. 
+//The Login process is described in detail in my documentation.
 const username = 'Oleg';
 const password = '12099021qQ!!!';
 const credentials = username + ":" + password;
 const encodedCredentials = base64.encode(credentials);
 
+// Returns all employees on the Drupal server.
 export const GetWorkersRequest = async () =>
 {
 
@@ -38,17 +60,7 @@ export const GetWorkersRequest = async () =>
     }
 };
 
-export const GetTokenRequest = async () => {
-    const url = config_file.host_link + "/session/token";
-    try {
-        const response = await fetch(url);
-        return await response.text();
-    } catch (error) {
-        console.error(error);
-        return "None";
-    }
-};
-
+// Creates a new employee on the server.
 export const PostNewWorker = async (newWorker: UWorker): Promise<void> => {
     const url = config_file.host_link + "/jsonapi/node/rabotnik";
     const body = newWorker.DeserializeJSON();
@@ -76,7 +88,7 @@ export const PostNewWorker = async (newWorker: UWorker): Promise<void> => {
 };
 
 
-
+// Deletes an employee on the server.
 export const DeleteWorker = async (removeWorker: UWorker): Promise<void> => {
     const url = config_file.host_link + "/jsonapi/node/rabotnik" + "/" + removeWorker.id;
     const headers = {
@@ -99,6 +111,7 @@ export const DeleteWorker = async (removeWorker: UWorker): Promise<void> => {
     }
 };
 
+//Updates the status of the employee on the server.
 export const PatchWorker = async (patchWorker: UWorker): Promise<void> => {
     const url = config_file.host_link + "/jsonapi/node/rabotnik" + "/" + patchWorker.id;
     const body = patchWorker.DeserializePatchJSON();
@@ -123,7 +136,7 @@ export const PatchWorker = async (patchWorker: UWorker): Promise<void> => {
     }
 };
 
-
+//Return all variants of the Work_Position taxonomy.
 export const GetWorkPositionsRequest = async () => {
     const url = config_file.host_link + '/jsonapi/taxonomy_term/tip_dolzhnosti';
 

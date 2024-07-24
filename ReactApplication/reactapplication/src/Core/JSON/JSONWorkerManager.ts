@@ -2,9 +2,13 @@ import * as JsonApplicationLibrary from './JsonApplicationLibrary';
 import { UWorker } from '../Worker';
 import { UEntityManager } from "./JSONEntityManager"
 
+//Тип UEntityManager обслуживающий всех workers. Читайте общее устройство в  описании абстрактного класса UEntityManager.
+//The type of UEntityManager that serves all workers. Read the general device in the description of the abstract UEntityManager class.
 export class UWorkerEntityManager extends UEntityManager {
     public workers: UWorker[] = [];
 
+    //HelperFunctions
+    //Вспомогательные функции
     private FindWorkerInWorkersByName(worker_name: string, workers: UWorker[]): UWorker | null {
         return workers.find(worker => worker.name === worker_name) || null;
     }
@@ -13,6 +17,8 @@ export class UWorkerEntityManager extends UEntityManager {
         return workers.find(worker => worker.id === worker_id) || null;
     }
 
+    //Функции добавления или удаления Worker в локальную копию. Вызывает делегат, на который подписаны Widgets.
+    //Functions for adding or removing Worker to a local copy. Calls the delegate that Widgets are subscribed to.
     private AddWorker(worker: UWorker): void {
         this.workers.push(worker);
         this.new_entity_delegate.Broadcast(worker);
@@ -26,6 +32,8 @@ export class UWorkerEntityManager extends UEntityManager {
         this.remove_entity_delegate.Broadcast(worker);
     }
 
+    //Принцип таков. Entity Manager получает все необходимые сущности, инициализирует их и проверяет их существование в своей копии. В случае новой копии или отсутсвия копии, добавляет ее или удаляет.
+    //The principle is as follows.Entity Manager gets all the necessary entities, initializes them and checks their existence in its copy. In case of a new copy or missing copy, add it or delete it.
     public async UpdateEntity()
     {
         const new_workers: UWorker[] = [];
@@ -60,7 +68,8 @@ export class UWorkerEntityManager extends UEntityManager {
         }
         workers_to_add.forEach(worker => this.AddWorker(worker));
     }
-
+    //Management functions of the corresponding Entities on the server.
+    //Функции управления соответствующими объектами на сервере.
     public async DeleteWorker(worker: UWorker) {
         await JsonApplicationLibrary.DeleteWorker(worker);
         this.UpdateEntity();

@@ -1,5 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// Function to replace all variables with a given name in JSON
+/* 
+    This module contains functions for simple processing of JSON OUT OF context.
+
+    There are no dependencies.
+*/
+
+// Function to replace all variables with a given name in JSON; if variable is -1 return all variables;
 export function replaceVariablesByName(data: any, variableName: string, newValue: any, index: number = -1): void {
     if (index >= 0) {
         let k = -1;
