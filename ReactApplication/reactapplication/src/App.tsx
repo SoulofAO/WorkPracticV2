@@ -91,6 +91,7 @@ export class App extends React.Component {
     handleRemoveWorkerClick = () => {
         this.actionStatus = EActionStatus.None;
         //Копия необходима, так как удаление может привести к изменению this.GetSelectedWorkers() и соответсвенно к ошибке цикла For. Не думаю, что я должен обьяснить это подробнее. 
+        //A copy is necessary, as deleting it may change this.GetSelectedWorkers() and correspondingly to the error of the For loop. I don't think I should explain this in more detail.
         const deleteWorkers = this.GetSelectedWorkers();
         for (const worker of deleteWorkers)
         {
