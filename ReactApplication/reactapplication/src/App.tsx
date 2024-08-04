@@ -1,10 +1,10 @@
-import './App.css'
+п»їimport './App.css'
 import React from 'react'
 import { UWorker } from "./Core/Worker"
 import * as config_file from "./config_file"
 import {WorkerWidget} from "./WorkerWidget"
 
-//Вспомогательный энумератор, определяющий нужно ли открывать окошко редактирования Worker. /
+//Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Р№ СЌРЅСѓРјРµСЂР°С‚РѕСЂ, РѕРїСЂРµРґРµР»СЏСЋС‰РёР№ РЅСѓР¶РЅРѕ Р»Рё РѕС‚РєСЂС‹РІР°С‚СЊ РѕРєРѕС€РєРѕ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ Worker. /
 //An auxiliary enumerator that determines whether to open the Worker editing window.
 enum EActionStatus
 {
@@ -13,12 +13,12 @@ enum EActionStatus
     Edit
 }
 
-//Это ключевой компонент моей системы. В будущем будет называться UApp Widget. Поддерживает актуальный список Workers и несколько кнопок отвечающих за переход к форме редактирования Worker (New, Edit), удаление Workers, отмену действий. 
+//Р­С‚Рѕ РєР»СЋС‡РµРІРѕР№ РєРѕРјРїРѕРЅРµРЅС‚ РјРѕРµР№ СЃРёСЃС‚РµРјС‹. Р’ Р±СѓРґСѓС‰РµРј Р±СѓРґРµС‚ РЅР°Р·С‹РІР°С‚СЊСЃСЏ UApp Widget. РџРѕРґРґРµСЂР¶РёРІР°РµС‚ Р°РєС‚СѓР°Р»СЊРЅС‹Р№ СЃРїРёСЃРѕРє Workers Рё РЅРµСЃРєРѕР»СЊРєРѕ РєРЅРѕРїРѕРє РѕС‚РІРµС‡Р°СЋС‰РёС… Р·Р° РїРµСЂРµС…РѕРґ Рє С„РѕСЂРјРµ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ Worker (New, Edit), СѓРґР°Р»РµРЅРёРµ Workers, РѕС‚РјРµРЅСѓ РґРµР№СЃС‚РІРёР№. 
 //This is a key component of my system. In the future it will be called UApp Widget. It supports an up-to-date list of Workers and several buttons responsible for switching to the Worker editing form (New, Edit), deleting Workers, and canceling actions.
 export class App extends React.Component {
 
-    //Локальная копия отображаемых workers соответсвующая копии workers в UWorkerEntityManager.
-    //Отвечая на немой вопрос - да, вы действительно можете использовать workers из UWorkerEntityManager напрямую. Однако это противоречит принципу максимального разделения.
+    //Р›РѕРєР°Р»СЊРЅР°СЏ РєРѕРїРёСЏ РѕС‚РѕР±СЂР°Р¶Р°РµРјС‹С… workers СЃРѕРѕС‚РІРµС‚СЃРІСѓСЋС‰Р°СЏ РєРѕРїРёРё workers РІ UWorkerEntityManager.
+    //РћС‚РІРµС‡Р°СЏ РЅР° РЅРµРјРѕР№ РІРѕРїСЂРѕСЃ - РґР°, РІС‹ РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ РјРѕР¶РµС‚Рµ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ workers РёР· UWorkerEntityManager РЅР°РїСЂСЏРјСѓСЋ. РћРґРЅР°РєРѕ СЌС‚Рѕ РїСЂРѕС‚РёРІРѕСЂРµС‡РёС‚ РїСЂРёРЅС†РёРїСѓ РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ СЂР°Р·РґРµР»РµРЅРёСЏ.
 
     //The local copy of the displayed workers corresponds to the copy of workers in the UWorkerEntityManager.
     //Answering the dumb question - yes, you can actually use workers from UWorkerEntityManager directly. However, this contradicts the principle of maximum separation.
@@ -27,8 +27,8 @@ export class App extends React.Component {
     public lastSelectedWorker: UWorker | null = null;
     
     /*
-        Этот элемент вызывается единожды при создании Widget. Фактически это не совсем так. Constructor вызывается дважды в некоторых Mode сборки для проверки некоторых элементов React. 
-        В конструкторе мы подписываемся на обновления Worker Entities используя UWorkerEntityManager через ссылку в config_variable 
+        Р­С‚РѕС‚ СЌР»РµРјРµРЅС‚ РІС‹Р·С‹РІР°РµС‚СЃСЏ РµРґРёРЅРѕР¶РґС‹ РїСЂРё СЃРѕР·РґР°РЅРёРё Widget. Р¤Р°РєС‚РёС‡РµСЃРєРё СЌС‚Рѕ РЅРµ СЃРѕРІСЃРµРј С‚Р°Рє. Constructor РІС‹Р·С‹РІР°РµС‚СЃСЏ РґРІР°Р¶РґС‹ РІ РЅРµРєРѕС‚РѕСЂС‹С… Mode СЃР±РѕСЂРєРё РґР»СЏ РїСЂРѕРІРµСЂРєРё РЅРµРєРѕС‚РѕСЂС‹С… СЌР»РµРјРµРЅС‚РѕРІ React. 
+        Р’ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂРµ РјС‹ РїРѕРґРїРёСЃС‹РІР°РµРјСЃСЏ РЅР° РѕР±РЅРѕРІР»РµРЅРёСЏ Worker Entities РёСЃРїРѕР»СЊР·СѓСЏ UWorkerEntityManager С‡РµСЂРµР· СЃСЃС‹Р»РєСѓ РІ config_variable 
     */
     /*
          This element is called once when creating a Widget. In fact, this is not quite true. Constructor is called twice in some Build Modes to check some React elements. 
@@ -40,7 +40,7 @@ export class App extends React.Component {
         super();
         this.workers = []
         this.actionStatus = EActionStatus.None
-        //Ссылка на this.WorkerWidget
+        //РЎСЃС‹Р»РєР° РЅР° this.WorkerWidget
         this.WorkerWidgetRef = React.createRef();
         //Connecting to Delegates on a Worker Entity Manager.
         if (config_file.GetWorkerEntityManager() != null)
@@ -54,7 +54,7 @@ export class App extends React.Component {
         
     }
 
-    //Функции удаления и добавления локальной Workers копии.
+    //Р¤СѓРЅРєС†РёРё СѓРґР°Р»РµРЅРёСЏ Рё РґРѕР±Р°РІР»РµРЅРёСЏ Р»РѕРєР°Р»СЊРЅРѕР№ Workers РєРѕРїРёРё.
     //The functions of deleting and adding a local Worker copy.
     handleRemoveWorkerRecive = (remove_worker: UWorker) => {
         const index = this.workers.indexOf(remove_worker);
@@ -69,7 +69,7 @@ export class App extends React.Component {
         this.forceUpdate();
     }
 
-    //События, которые обновляют статус WorkerWidget.
+    //РЎРѕР±С‹С‚РёСЏ, РєРѕС‚РѕСЂС‹Рµ РѕР±РЅРѕРІР»СЏСЋС‚ СЃС‚Р°С‚СѓСЃ WorkerWidget.
     //Events that update the status of the Worker Widget.
     handleNewWorkerClick = () => {
         this.actionStatus = EActionStatus.New;
@@ -86,11 +86,11 @@ export class App extends React.Component {
         this.forceUpdate();
     }
 
-    //Функция для удаления работников.
+    //Р¤СѓРЅРєС†РёСЏ РґР»СЏ СѓРґР°Р»РµРЅРёСЏ СЂР°Р±РѕС‚РЅРёРєРѕРІ.
     //Function to Delete Workers.
     handleRemoveWorkerClick = () => {
         this.actionStatus = EActionStatus.None;
-        //Копия необходима, так как удаление может привести к изменению this.GetSelectedWorkers() и соответсвенно к ошибке цикла For. Не думаю, что я должен обьяснить это подробнее. 
+        //РљРѕРїРёСЏ РЅРµРѕР±С…РѕРґРёРјР°, С‚Р°Рє РєР°Рє СѓРґР°Р»РµРЅРёРµ РјРѕР¶РµС‚ РїСЂРёРІРµСЃС‚Рё Рє РёР·РјРµРЅРµРЅРёСЋ this.GetSelectedWorkers() Рё СЃРѕРѕС‚РІРµС‚СЃРІРµРЅРЅРѕ Рє РѕС€РёР±РєРµ С†РёРєР»Р° For. РќРµ РґСѓРјР°СЋ, С‡С‚Рѕ СЏ РґРѕР»Р¶РµРЅ РѕР±СЊСЏСЃРЅРёС‚СЊ СЌС‚Рѕ РїРѕРґСЂРѕР±РЅРµРµ. 
         //A copy is necessary, as deleting it may change this.GetSelectedWorkers() and correspondingly to the error of the For loop. I don't think I should explain this in more detail.
         const deleteWorkers = this.GetSelectedWorkers();
         for (const worker of deleteWorkers)
@@ -98,7 +98,7 @@ export class App extends React.Component {
             config_file.GetWorkerEntityManager()?.DeleteWorker(worker);
         }
     }
-    //Получение всех Workers из selected Workers.
+    //РџРѕР»СѓС‡РµРЅРёРµ РІСЃРµС… Workers РёР· selected Workers.
     //Getting all Workers from selected Workers.
     GetSelectedWorkers = (): UWorker[] =>
     {
@@ -121,9 +121,9 @@ export class App extends React.Component {
 
         return workerResults;
     }
-    /*this.lastSelectedWorker передается Worker Widget при инициализации и передается по прямой ссылке если WorkerWidget уже валиден. 
-    Читатель может заметить - почему я передаю this.lastSelectedWorker дважды, а не сначала создаю WorkerWidget, а затем назначаю SetWorker(). Помимо чисто оптимизационных формальностей, 
-    React не инициализирует ссылки мгновенно после ForceUpdate()
+    /*this.lastSelectedWorker РїРµСЂРµРґР°РµС‚СЃСЏ Worker Widget РїСЂРё РёРЅРёС†РёР°Р»РёР·Р°С†РёРё Рё РїРµСЂРµРґР°РµС‚СЃСЏ РїРѕ РїСЂСЏРјРѕР№ СЃСЃС‹Р»РєРµ РµСЃР»Рё WorkerWidget СѓР¶Рµ РІР°Р»РёРґРµРЅ. 
+    Р§РёС‚Р°С‚РµР»СЊ РјРѕР¶РµС‚ Р·Р°РјРµС‚РёС‚СЊ - РїРѕС‡РµРјСѓ СЏ РїРµСЂРµРґР°СЋ this.lastSelectedWorker РґРІР°Р¶РґС‹, Р° РЅРµ СЃРЅР°С‡Р°Р»Р° СЃРѕР·РґР°СЋ WorkerWidget, Р° Р·Р°С‚РµРј РЅР°Р·РЅР°С‡Р°СЋ SetWorker(). РџРѕРјРёРјРѕ С‡РёСЃС‚Рѕ РѕРїС‚РёРјРёР·Р°С†РёРѕРЅРЅС‹С… С„РѕСЂРјР°Р»СЊРЅРѕСЃС‚РµР№, 
+    React РЅРµ РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµС‚ СЃСЃС‹Р»РєРё РјРіРЅРѕРІРµРЅРЅРѕ РїРѕСЃР»Рµ ForceUpdate()
     */
     /*this.lastSelectedWorker is passed to Worker Widget during initialization and passed by direct link if WorkerWidget is already valid.
       The reader may notice why I pass this.lastSelectedWorker twice instead of first creating a WorkerWidget and then assigning SetWorker(). Apart from purely optimization formalities, 
@@ -139,7 +139,7 @@ export class App extends React.Component {
         
     }
 
-    //Ключевой элемент рендеринга. Вызывается множетсво раз при обновлении состояния или ForceUpdate()
+    //РљР»СЋС‡РµРІРѕР№ СЌР»РµРјРµРЅС‚ СЂРµРЅРґРµСЂРёРЅРіР°. Р’С‹Р·С‹РІР°РµС‚СЃСЏ РјРЅРѕР¶РµС‚СЃРІРѕ СЂР°Р· РїСЂРё РѕР±РЅРѕРІР»РµРЅРёРё СЃРѕСЃС‚РѕСЏРЅРёСЏ РёР»Рё ForceUpdate()
     //A key element of rendering. Called many times when the state is updated or forceUpdate()
     render()
     {

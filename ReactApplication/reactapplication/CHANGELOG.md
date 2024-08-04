@@ -1,4 +1,4 @@
-This file explains how Visual Studio created the project.
+﻿This file explains how Visual Studio created the project.
 
 The following tools were used to generate this project:
 - create-vite

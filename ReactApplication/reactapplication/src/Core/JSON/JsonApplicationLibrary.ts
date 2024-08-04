@@ -1,13 +1,13 @@
-import * as config_file from '../../config_file';
+п»їimport * as config_file from '../../config_file';
 import axios from 'axios';
 import { UWorker } from '../Worker';
 import base64 from 'base-64';
 
 /*
-    Этот модуль содержит функции для простой обработки JSON В КОНТЕКСТЕ ПРИЛОЖЕНИЯ. 
-    Обеспечивает связь между программой и сервером Drupal.
+    Р­С‚РѕС‚ РјРѕРґСѓР»СЊ СЃРѕРґРµСЂР¶РёС‚ С„СѓРЅРєС†РёРё РґР»СЏ РїСЂРѕСЃС‚РѕР№ РѕР±СЂР°Р±РѕС‚РєРё JSON Р’ РљРћРќРўР•РљРЎРўР• РџР РР›РћР–Р•РќРРЇ. 
+    РћР±РµСЃРїРµС‡РёРІР°РµС‚ СЃРІСЏР·СЊ РјРµР¶РґСѓ РїСЂРѕРіСЂР°РјРјРѕР№ Рё СЃРµСЂРІРµСЂРѕРј Drupal.
 
-    Зависимости:
+    Р—Р°РІРёСЃРёРјРѕСЃС‚Рё:
     Worker
     config_file
 */
@@ -22,7 +22,7 @@ import base64 from 'base-64';
 */
 
 
-//Процесс Login подробно описан в моей документации. 
+//РџСЂРѕС†РµСЃСЃ Login РїРѕРґСЂРѕР±РЅРѕ РѕРїРёСЃР°РЅ РІ РјРѕРµР№ РґРѕРєСѓРјРµРЅС‚Р°С†РёРё. 
 //The Login process is described in detail in my documentation.
 const username = 'Oleg';
 const password = '12099021qQ!!!';

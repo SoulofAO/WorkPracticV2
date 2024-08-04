@@ -13,7 +13,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\Core\Application\" />
-    <Folder Include="src\Core\Other\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="M:\App.tsx">

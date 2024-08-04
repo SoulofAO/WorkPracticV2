@@ -1,14 +1,14 @@
-import * as JsonLibrary from './JSON/JsonLibrary';
+п»їimport * as JsonLibrary from './JSON/JsonLibrary';
 import * as fs from 'fs';
 import * as JSONApplicationLibrary from './JSON/JsonApplicationLibrary'
 import * as config_file from '../config_file'
 
 /*
-    Это примеры того, как должна выглядеть итоговая Body запроса в Drupal. 
-    Дело в том, что данная запись содержит огромное количество переменных.
-    Поэтому вместо того что бы конструировать ее с нуля я беру существующую в качестве примера и заменяю там элементы. 
-    patchWorkerExample используется для обновления существующего Worker и за его Body отвечает DeserializePatchJSON, 
-    newWorkerExample используется для создание нового Worker и за его Body отвечает DeserializeJSON
+    Р­С‚Рѕ РїСЂРёРјРµСЂС‹ С‚РѕРіРѕ, РєР°Рє РґРѕР»Р¶РЅР° РІС‹РіР»СЏРґРµС‚СЊ РёС‚РѕРіРѕРІР°СЏ Body Р·Р°РїСЂРѕСЃР° РІ Drupal. 
+    Р”РµР»Рѕ РІ С‚РѕРј, С‡С‚Рѕ РґР°РЅРЅР°СЏ Р·Р°РїРёСЃСЊ СЃРѕРґРµСЂР¶РёС‚ РѕРіСЂРѕРјРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РїРµСЂРµРјРµРЅРЅС‹С….
+    РџРѕСЌС‚РѕРјСѓ РІРјРµСЃС‚Рѕ С‚РѕРіРѕ С‡С‚Рѕ Р±С‹ РєРѕРЅСЃС‚СЂСѓРёСЂРѕРІР°С‚СЊ РµРµ СЃ РЅСѓР»СЏ СЏ Р±РµСЂСѓ СЃСѓС‰РµСЃС‚РІСѓСЋС‰СѓСЋ РІ РєР°С‡РµСЃС‚РІРµ РїСЂРёРјРµСЂР° Рё Р·Р°РјРµРЅСЏСЋ С‚Р°Рј СЌР»РµРјРµРЅС‚С‹. 
+    patchWorkerExample РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ РѕР±РЅРѕРІР»РµРЅРёСЏ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРіРѕ Worker Рё Р·Р° РµРіРѕ Body РѕС‚РІРµС‡Р°РµС‚ DeserializePatchJSON, 
+    newWorkerExample РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ СЃРѕР·РґР°РЅРёРµ РЅРѕРІРѕРіРѕ Worker Рё Р·Р° РµРіРѕ Body РѕС‚РІРµС‡Р°РµС‚ DeserializeJSON
 
 
     These are examples of what the final Request Body in Drupal should look like.
@@ -27,7 +27,7 @@ const patchWorkerExample =
         "attributes": {
             "revision_log": null,
             "status": true,
-            "title": "НЕ Пушкин V3",
+            "title": "РќР• РџСѓС€РєРёРЅ V3",
             "created": "2024-07-05T08:41:06+00:00",
             "promote": true,
             "sticky": false,
@@ -39,7 +39,7 @@ const patchWorkerExample =
             },
             "body": null,
             "field_pochta": "gjkhhjkhbkb@gmail.com",
-            "field_podrazdelenie": "Отдел маркетинга",
+            "field_podrazdelenie": "РћС‚РґРµР» РјР°СЂРєРµС‚РёРЅРіР°",
             "field_strana": "US"
         },
         "relationships": {
@@ -74,7 +74,7 @@ const newWorkerExample =
             "attributes": {
                 "revision_log": null,
                 "status": true,
-                "title": "НЕ Пушкин V3",
+                "title": "РќР• РџСѓС€РєРёРЅ V3",
                 "created": "2024-07-05T08:41:06+00:00",
                 "promote": true,
                 "sticky": false,
@@ -86,7 +86,7 @@ const newWorkerExample =
                 },
                 "body": null,
                 "field_pochta": "gjkhhjkhbkb@gmail.com",
-                "field_podrazdelenie": "Отдел маркетинга",
+                "field_podrazdelenie": "РћС‚РґРµР» РјР°СЂРєРµС‚РёРЅРіР°",
                 "field_strana": "US"
             },
             "relationships": {
@@ -146,7 +146,7 @@ const newWorkerExample =
             }
         }
     } 
-// Work Position. Используется для представления Taxonomy Work Position на стороне Client. Обрабатывается UWorkPositionEntityManager.
+// Work Position. РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ Taxonomy Work Position РЅР° СЃС‚РѕСЂРѕРЅРµ Client. РћР±СЂР°Р±Р°С‚С‹РІР°РµС‚СЃСЏ UWorkPositionEntityManager.
 // Work Position. It is used to represent the Taxonomy Work Position on the Client side. The UWorkPositionEntityManager is being processed.
 export class UWorkPosition
 {
@@ -158,7 +158,7 @@ export class UWorkPosition
         this.id = id;
     }
 
-    // Преобразование данных из JSON в свойства объекта
+    // РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РґР°РЅРЅС‹С… РёР· JSON РІ СЃРІРѕР№СЃС‚РІР° РѕР±СЉРµРєС‚Р°
     // Converting data from JSON to object properties
     public async SerializeJSON(json: any): void {
         this.name = String(JsonLibrary.findVariablesByName(json, 'name')[0]);
@@ -168,7 +168,7 @@ export class UWorkPosition
 
 }
 
-// Worker. Используется для представления типа материала Worker на стороне Client. Обрабатывается UWorkerEntityManager.
+// Worker. РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ С‚РёРїР° РјР°С‚РµСЂРёР°Р»Р° Worker РЅР° СЃС‚РѕСЂРѕРЅРµ Client. РћР±СЂР°Р±Р°С‚С‹РІР°РµС‚СЃСЏ UWorkerEntityManager.
 // Worker. It is used to represent the type of Worker material on the Client side. The UWorkerEntityManager is being processed.
 export class UWorker {
     public name: string;
@@ -187,7 +187,7 @@ export class UWorker {
         this.id = id;
     }
 
-    // Преобразование данных из JSON в свойства объекта
+    // РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РґР°РЅРЅС‹С… РёР· JSON РІ СЃРІРѕР№СЃС‚РІР° РѕР±СЉРµРєС‚Р°
     // Converting data from JSON to object properties
     public SerializeJSON(json: any): void {
         this.name = String(JsonLibrary.findVariablesByName(json, 'title')[0]);
@@ -199,7 +199,7 @@ export class UWorker {
         this.workPosition = config_file.GetWorkPositionEntityManager().FindWorkPositionByID(workPositionID, config_file.GetWorkPositionEntityManager()?.workPositions);
     }
 
-    // Преобразование обьекта в Json для создания нового Worker на стороне сервера.
+    // РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РѕР±СЊРµРєС‚Р° РІ Json РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РЅРѕРІРѕРіРѕ Worker РЅР° СЃС‚РѕСЂРѕРЅРµ СЃРµСЂРІРµСЂР°.
     //Converting an object to Json to create a new Worker on the server side.
     public DeserializeJSON(): any {
         const body = newWorkerExample;
@@ -213,7 +213,7 @@ export class UWorker {
         return body;
     }
 
-    // Преобразование обьекта в Json для обновления Worker на стороне сервера.
+    // РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РѕР±СЊРµРєС‚Р° РІ Json РґР»СЏ РѕР±РЅРѕРІР»РµРЅРёСЏ Worker РЅР° СЃС‚РѕСЂРѕРЅРµ СЃРµСЂРІРµСЂР°.
     // Converting an object to Json for updating Worker on the server side.
 
     public DeserializePatchJSON(): any {

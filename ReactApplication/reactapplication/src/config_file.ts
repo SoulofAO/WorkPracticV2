@@ -1,8 +1,8 @@
-import { UWorkerEntityManager } from "./Core/JSON/JSONWorkerManager"
+п»їimport { UWorkerEntityManager } from "./Core/JSON/JSONWorkerManager"
 import { UWorkPositionEntityManager } from "./Core/JSON/JSONWorkPositionManager"
 import { AxiosInstance } from 'axios';
 
-//config_file это хранилище основных глобальных констант, переменных и Subsistem. Может использоваться для упрощенного доступа к коду из разных частей программы.
+//config_file СЌС‚Рѕ С…СЂР°РЅРёР»РёС‰Рµ РѕСЃРЅРѕРІРЅС‹С… РіР»РѕР±Р°Р»СЊРЅС‹С… РєРѕРЅСЃС‚Р°РЅС‚, РїРµСЂРµРјРµРЅРЅС‹С… Рё Subsistem. РњРѕР¶РµС‚ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊСЃСЏ РґР»СЏ СѓРїСЂРѕС‰РµРЅРЅРѕРіРѕ РґРѕСЃС‚СѓРїР° Рє РєРѕРґСѓ РёР· СЂР°Р·РЅС‹С… С‡Р°СЃС‚РµР№ РїСЂРѕРіСЂР°РјРјС‹.
 //config_file is a repository of basic global constants, variables, and Subsistem. It can be used for simplified access to code from different parts of the program.
 export const host_link: string = "http://localhost/drupal";
 export let WorkerEntityManager: UWorkerEntityManager | null = null;

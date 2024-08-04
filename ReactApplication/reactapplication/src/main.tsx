@@ -1,4 +1,4 @@
-import React from 'react'
+п»їimport React from 'react'
 import ReactDOM from 'react-dom/client'
 import { App } from './App.tsx'
 import './index.css'
@@ -8,9 +8,9 @@ import * as config_file from './config_file.ts'
 
 
 /*
-    Корень приложения.
-    Здесь инициализируются основные Subsystem приложения и обрабатываются рендеринг. 
-    При необходимости было бы хорошо ввести полноценную идеалогию subsistem.
+    РљРѕСЂРµРЅСЊ РїСЂРёР»РѕР¶РµРЅРёСЏ.
+    Р—РґРµСЃСЊ РёРЅРёС†РёР°Р»РёР·РёСЂСѓСЋС‚СЃСЏ РѕСЃРЅРѕРІРЅС‹Рµ Subsystem РїСЂРёР»РѕР¶РµРЅРёСЏ Рё РѕР±СЂР°Р±Р°С‚С‹РІР°СЋС‚СЃСЏ СЂРµРЅРґРµСЂРёРЅРі. 
+    РџСЂРё РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё Р±С‹Р»Рѕ Р±С‹ С…РѕСЂРѕС€Рѕ РІРІРµСЃС‚Рё РїРѕР»РЅРѕС†РµРЅРЅСѓСЋ РёРґРµР°Р»РѕРіРёСЋ subsistem.
 
 */
 /*
@@ -20,7 +20,7 @@ import * as config_file from './config_file.ts'
 
 */
 
-//Создание основных EntityManager. Каждая Manager заносится в config_file.
+//РЎРѕР·РґР°РЅРёРµ РѕСЃРЅРѕРІРЅС‹С… EntityManager. РљР°Р¶РґР°СЏ Manager Р·Р°РЅРѕСЃРёС‚СЃСЏ РІ config_file.
 //Creating the main EntityManager. Each Manager is entered in the config_file.
 const WorkPositionEntityManager = new UWorkPositionEntityManager();
 if (WorkPositionEntityManager) {
@@ -34,7 +34,7 @@ if (WorkerEntityManager) {
     await WorkerEntityManager.Initialization();
 }
 
-//Основа рендеринга. 
+//РћСЃРЅРѕРІР° СЂРµРЅРґРµСЂРёРЅРіР°. 
 //The basis of rendering.
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

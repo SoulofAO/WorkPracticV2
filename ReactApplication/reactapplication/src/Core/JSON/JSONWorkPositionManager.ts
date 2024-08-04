@@ -1,7 +1,7 @@
-import * as JsonApplicationLibrary from './JsonApplicationLibrary';
+п»їimport * as JsonApplicationLibrary from './JsonApplicationLibrary';
 import { UEntityManager } from "./JSONEntityManager"
 import { UWorkPosition } from "../Worker"
-//Тип UEntityManager обслуживающий всех workPosition.Читайте общее устройство в  описании абстрактного класса UEntityManager.
+//РўРёРї UEntityManager РѕР±СЃР»СѓР¶РёРІР°СЋС‰РёР№ РІСЃРµС… workPosition.Р§РёС‚Р°Р№С‚Рµ РѕР±С‰РµРµ СѓСЃС‚СЂРѕР№СЃС‚РІРѕ РІ  РѕРїРёСЃР°РЅРёРё Р°Р±СЃС‚СЂР°РєС‚РЅРѕРіРѕ РєР»Р°СЃСЃР° UEntityManager.
 //The type of UEntityManager serving all workPositio. Read the general device in the description of the abstract UEntityManager class.
 export class UWorkPositionEntityManager extends UEntityManager {
 
@@ -10,7 +10,7 @@ export class UWorkPositionEntityManager extends UEntityManager {
         super();
     }
     //HelperFunctions
-    //Вспомогательные функции
+    //Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Рµ С„СѓРЅРєС†РёРё
     public GetWorkerNames(): string[] {
         const names : string[]=[]
         for (const workPosition of this.workPositions) {
@@ -27,7 +27,7 @@ export class UWorkPositionEntityManager extends UEntityManager {
         return workPositions.find(workPosition => workPosition.name === workPositionName) || null;
     }
 
-    //Функции добавления или удаления WorkPosition в локальную копию. Вызывает делегат, на который могут быть подписаны Widgets.
+    //Р¤СѓРЅРєС†РёРё РґРѕР±Р°РІР»РµРЅРёСЏ РёР»Рё СѓРґР°Р»РµРЅРёСЏ WorkPosition РІ Р»РѕРєР°Р»СЊРЅСѓСЋ РєРѕРїРёСЋ. Р’С‹Р·С‹РІР°РµС‚ РґРµР»РµРіР°С‚, РЅР° РєРѕС‚РѕСЂС‹Р№ РјРѕРіСѓС‚ Р±С‹С‚СЊ РїРѕРґРїРёСЃР°РЅС‹ Widgets.
     //Functions for adding or removing Worker to a local copy. Calls the delegate that may Widgets are subscribed to.
     private AddWorkPosition(workPosition: UWorkPosition): void {
         this.workPositions.push(workPosition);
@@ -42,7 +42,7 @@ export class UWorkPositionEntityManager extends UEntityManager {
         this.remove_entity_delegate.Broadcast(workPosition);
     }
 
-    //Принцип таков. Entity Manager получает все необходимые сущности, инициализирует их и проверяет их существование в своей копии. В случае новой копии или отсутсвия копии, добавляет ее или удаляет.
+    //РџСЂРёРЅС†РёРї С‚Р°РєРѕРІ. Entity Manager РїРѕР»СѓС‡Р°РµС‚ РІСЃРµ РЅРµРѕР±С…РѕРґРёРјС‹Рµ СЃСѓС‰РЅРѕСЃС‚Рё, РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµС‚ РёС… Рё РїСЂРѕРІРµСЂСЏРµС‚ РёС… СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ РІ СЃРІРѕРµР№ РєРѕРїРёРё. Р’ СЃР»СѓС‡Р°Рµ РЅРѕРІРѕР№ РєРѕРїРёРё РёР»Рё РѕС‚СЃСѓС‚СЃРІРёСЏ РєРѕРїРёРё, РґРѕР±Р°РІР»СЏРµС‚ РµРµ РёР»Рё СѓРґР°Р»СЏРµС‚.
     //The principle is as follows.Entity Manager gets all the necessary entities, initializes them and checks their existence in its copy. In case of a new copy or missing copy, add it or delete it.
     public async UpdateEntity() {
         const newWorkPositions: UWorkPosition[] = [];

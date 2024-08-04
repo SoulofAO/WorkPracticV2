@@ -1,4 +1,4 @@
-/* 
+﻿/* 
     This module contains functions for simple processing of JSON OUT OF context.
 
     There are no dependencies.

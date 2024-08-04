@@ -1,9 +1,9 @@
-import { UWorker } from "./Core/Worker"
+п»їimport { UWorker } from "./Core/Worker"
 import React, { useEffect, useRef, useMemo } from 'react'
 import './WorkerWidget.css'
 import countryList from 'react-select-country-list'
 import * as config_file from './config_file'
-//Вспомогательные функции, которые используются при проверки вводимых данных
+//Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Рµ С„СѓРЅРєС†РёРё, РєРѕС‚РѕСЂС‹Рµ РёСЃРїРѕР»СЊР·СѓСЋС‚СЃСЏ РїСЂРё РїСЂРѕРІРµСЂРєРё РІРІРѕРґРёРјС‹С… РґР°РЅРЅС‹С…
 //Auxiliary functions that are used when checking input data
 function isValidEmail(email) {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -20,17 +20,17 @@ function isValidName(name) {
         return true;
     }
 }
-// WorkerWidget представляет собой Widget - форму, которая используется для создания или редактирования уже существующих Worker. 
+// WorkerWidget РїСЂРµРґСЃС‚Р°РІР»СЏРµС‚ СЃРѕР±РѕР№ Widget - С„РѕСЂРјСѓ, РєРѕС‚РѕСЂР°СЏ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ РёР»Рё СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёС… Worker. 
 // WorkerWidget is a Widget form that is used to create or edit existing Workers.
 export class WorkerWidget extends React.Component {
-    // Worker. На основании валидности этой ссылки форма либо отправит запрос на создание нового worker, либо отредактирует текущего worker.
+    // Worker. РќР° РѕСЃРЅРѕРІР°РЅРёРё РІР°Р»РёРґРЅРѕСЃС‚Рё СЌС‚РѕР№ СЃСЃС‹Р»РєРё С„РѕСЂРјР° Р»РёР±Рѕ РѕС‚РїСЂР°РІРёС‚ Р·Р°РїСЂРѕСЃ РЅР° СЃРѕР·РґР°РЅРёРµ РЅРѕРІРѕРіРѕ worker, Р»РёР±Рѕ РѕС‚СЂРµРґР°РєС‚РёСЂСѓРµС‚ С‚РµРєСѓС‰РµРіРѕ worker.
     // Worker. Based on the validity of this link, the form will either send a request to create a new worker, or edit the current worker.
     public worker: UWorker | null = null;
     
     constructor(props)
     {
         super(props);
-        //Используется props что бы передать текущего worker. 
+        //РСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ props С‡С‚Рѕ Р±С‹ РїРµСЂРµРґР°С‚СЊ С‚РµРєСѓС‰РµРіРѕ worker. 
         //Props is used to pass the current worker.
         this.worker = props.worker;
         this.inputNameRef = React.createRef();
@@ -40,7 +40,7 @@ export class WorkerWidget extends React.Component {
         this.selectPositionRef = React.createRef();
         this.errorLabelRef = React.createRef();
 
-        //Так как список стран ПО БОЛЬШЕЙ ЧАСТИ остается неизменным, он передается и получается не с сервера, а с помощью стороннего модуля.
+        //РўР°Рє РєР°Рє СЃРїРёСЃРѕРє СЃС‚СЂР°РЅ РџРћ Р‘РћР›Р¬РЁР•Р™ Р§РђРЎРўР РѕСЃС‚Р°РµС‚СЃСЏ РЅРµРёР·РјРµРЅРЅС‹Рј, РѕРЅ РїРµСЂРµРґР°РµС‚СЃСЏ Рё РїРѕР»СѓС‡Р°РµС‚СЃСЏ РЅРµ СЃ СЃРµСЂРІРµСЂР°, Р° СЃ РїРѕРјРѕС‰СЊСЋ СЃС‚РѕСЂРѕРЅРЅРµРіРѕ РјРѕРґСѓР»СЏ.
         //Since the list of countries remains unchanged FOR the MOST part, it is transmitted and received not from the server, but using a third-party module.
         this.countryOptions = countryList().getData();
         this.countryFullNames = []
@@ -56,14 +56,14 @@ export class WorkerWidget extends React.Component {
         this.workPositionNames = config_file.GetWorkPositionEntityManager().GetWorkerNames()
     }
 
-    //Простейшая функция, выводящая сообщение об ошибке. 
+    //РџСЂРѕСЃС‚РµР№С€Р°СЏ С„СѓРЅРєС†РёСЏ, РІС‹РІРѕРґСЏС‰Р°СЏ СЃРѕРѕР±С‰РµРЅРёРµ РѕР± РѕС€РёР±РєРµ. 
     //The simplest function that outputs an error message.
     ShowError = (text:string) => {
         this.errorLabelRef.current.textContent = text;
         this.forceUpdate();
     }
 
-    //Функция обновления текущего Worker. При смене Worker меняются и переменные по умолчанию. 
+    //Р¤СѓРЅРєС†РёСЏ РѕР±РЅРѕРІР»РµРЅРёСЏ С‚РµРєСѓС‰РµРіРѕ Worker. РџСЂРё СЃРјРµРЅРµ Worker РјРµРЅСЏСЋС‚СЃСЏ Рё РїРµСЂРµРјРµРЅРЅС‹Рµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ. 
     //The function of updating the current Worker. When changing the Worker, the default variables also change.
     SetWorker = (worker : UWorker) => 
     {
@@ -76,8 +76,8 @@ export class WorkerWidget extends React.Component {
         
         this.forceUpdate();
     }
-    //Функция обработки принятия Widget. Сначала получаются все данные с Widget, проверяется их валидность, затем новая информация заносится в worker или в нового созданного worker если this.worker невалиден. 
-    //После worker отправляется на обработку в WorkerEntityManager
+    //Р¤СѓРЅРєС†РёСЏ РѕР±СЂР°Р±РѕС‚РєРё РїСЂРёРЅСЏС‚РёСЏ Widget. РЎРЅР°С‡Р°Р»Р° РїРѕР»СѓС‡Р°СЋС‚СЃСЏ РІСЃРµ РґР°РЅРЅС‹Рµ СЃ Widget, РїСЂРѕРІРµСЂСЏРµС‚СЃСЏ РёС… РІР°Р»РёРґРЅРѕСЃС‚СЊ, Р·Р°С‚РµРј РЅРѕРІР°СЏ РёРЅС„РѕСЂРјР°С†РёСЏ Р·Р°РЅРѕСЃРёС‚СЃСЏ РІ worker РёР»Рё РІ РЅРѕРІРѕРіРѕ СЃРѕР·РґР°РЅРЅРѕРіРѕ worker РµСЃР»Рё this.worker РЅРµРІР°Р»РёРґРµРЅ. 
+    //РџРѕСЃР»Рµ worker РѕС‚РїСЂР°РІР»СЏРµС‚СЃСЏ РЅР° РѕР±СЂР°Р±РѕС‚РєСѓ РІ WorkerEntityManager
 
     //Widget acceptance processing function. First, all the data from the Widget is obtained, their validity is checked, then the new information is entered into the worker or into the newly created worker if this.worker is invalid.
     //After that, the worker is sent to the WorkerEntityManager for processing
@@ -114,7 +114,7 @@ export class WorkerWidget extends React.Component {
             }
         }
     };
-    //Вспомогательные функции отвечающие за предоставление информации в Widget пусть даже и при условии ее невалидность.
+    //Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Рµ С„СѓРЅРєС†РёРё РѕС‚РІРµС‡Р°СЋС‰РёРµ Р·Р° РїСЂРµРґРѕСЃС‚Р°РІР»РµРЅРёРµ РёРЅС„РѕСЂРјР°С†РёРё РІ Widget РїСѓСЃС‚СЊ РґР°Р¶Рµ Рё РїСЂРё СѓСЃР»РѕРІРёРё РµРµ РЅРµРІР°Р»РёРґРЅРѕСЃС‚СЊ.
     //Auxiliary functions responsible for providing information in the Widget, even if it is invalid.
     GetWorkerName = () => {
         if (this.worker) {
@@ -161,7 +161,7 @@ export class WorkerWidget extends React.Component {
         }
     };
 
-    //Основная функция рендеринга. className='required' и css файл используется только для того, что бы задать Error красный цвет. 
+    //РћСЃРЅРѕРІРЅР°СЏ С„СѓРЅРєС†РёСЏ СЂРµРЅРґРµСЂРёРЅРіР°. className='required' Рё css С„Р°Р№Р» РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ С‚РѕР»СЊРєРѕ РґР»СЏ С‚РѕРіРѕ, С‡С‚Рѕ Р±С‹ Р·Р°РґР°С‚СЊ Error РєСЂР°СЃРЅС‹Р№ С†РІРµС‚. 
     //The main rendering function. className='required' and the css file is only used to set Error to red.
     render()
     { 

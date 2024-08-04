@@ -1,14 +1,14 @@
-import * as JsonApplicationLibrary from './JsonApplicationLibrary';
+п»їimport * as JsonApplicationLibrary from './JsonApplicationLibrary';
 import { UWorker } from '../Worker';
 import { UEntityManager } from "./JSONEntityManager"
 
-//Тип UEntityManager обслуживающий всех workers. Читайте общее устройство в  описании абстрактного класса UEntityManager.
+//РўРёРї UEntityManager РѕР±СЃР»СѓР¶РёРІР°СЋС‰РёР№ РІСЃРµС… workers. Р§РёС‚Р°Р№С‚Рµ РѕР±С‰РµРµ СѓСЃС‚СЂРѕР№СЃС‚РІРѕ РІ  РѕРїРёСЃР°РЅРёРё Р°Р±СЃС‚СЂР°РєС‚РЅРѕРіРѕ РєР»Р°СЃСЃР° UEntityManager.
 //The type of UEntityManager that serves all workers. Read the general device in the description of the abstract UEntityManager class.
 export class UWorkerEntityManager extends UEntityManager {
     public workers: UWorker[] = [];
 
     //HelperFunctions
-    //Вспомогательные функции
+    //Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Рµ С„СѓРЅРєС†РёРё
     private FindWorkerInWorkersByName(worker_name: string, workers: UWorker[]): UWorker | null {
         return workers.find(worker => worker.name === worker_name) || null;
     }
@@ -17,7 +17,7 @@ export class UWorkerEntityManager extends UEntityManager {
         return workers.find(worker => worker.id === worker_id) || null;
     }
 
-    //Функции добавления или удаления Worker в локальную копию. Вызывает делегат, на который подписаны Widgets.
+    //Р¤СѓРЅРєС†РёРё РґРѕР±Р°РІР»РµРЅРёСЏ РёР»Рё СѓРґР°Р»РµРЅРёСЏ Worker РІ Р»РѕРєР°Р»СЊРЅСѓСЋ РєРѕРїРёСЋ. Р’С‹Р·С‹РІР°РµС‚ РґРµР»РµРіР°С‚, РЅР° РєРѕС‚РѕСЂС‹Р№ РїРѕРґРїРёСЃР°РЅС‹ Widgets.
     //Functions for adding or removing Worker to a local copy. Calls the delegate that Widgets are subscribed to.
     private AddWorker(worker: UWorker): void {
         this.workers.push(worker);
@@ -32,7 +32,7 @@ export class UWorkerEntityManager extends UEntityManager {
         this.remove_entity_delegate.Broadcast(worker);
     }
 
-    //Принцип таков. Entity Manager получает все необходимые сущности, инициализирует их и проверяет их существование в своей копии. В случае новой копии или отсутсвия копии, добавляет ее или удаляет.
+    //РџСЂРёРЅС†РёРї С‚Р°РєРѕРІ. Entity Manager РїРѕР»СѓС‡Р°РµС‚ РІСЃРµ РЅРµРѕР±С…РѕРґРёРјС‹Рµ СЃСѓС‰РЅРѕСЃС‚Рё, РёРЅРёС†РёР°Р»РёР·РёСЂСѓРµС‚ РёС… Рё РїСЂРѕРІРµСЂСЏРµС‚ РёС… СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ РІ СЃРІРѕРµР№ РєРѕРїРёРё. Р’ СЃР»СѓС‡Р°Рµ РЅРѕРІРѕР№ РєРѕРїРёРё РёР»Рё РѕС‚СЃСѓС‚СЃРІРёСЏ РєРѕРїРёРё, РґРѕР±Р°РІР»СЏРµС‚ РµРµ РёР»Рё СѓРґР°Р»СЏРµС‚.
     //The principle is as follows.Entity Manager gets all the necessary entities, initializes them and checks their existence in its copy. In case of a new copy or missing copy, add it or delete it.
     public async UpdateEntity()
     {
@@ -69,7 +69,7 @@ export class UWorkerEntityManager extends UEntityManager {
         workers_to_add.forEach(worker => this.AddWorker(worker));
     }
     //Management functions of the corresponding Entities on the server.
-    //Функции управления соответствующими объектами на сервере.
+    //Р¤СѓРЅРєС†РёРё СѓРїСЂР°РІР»РµРЅРёСЏ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёРјРё РѕР±СЉРµРєС‚Р°РјРё РЅР° СЃРµСЂРІРµСЂРµ.
     public async DeleteWorker(worker: UWorker) {
         await JsonApplicationLibrary.DeleteWorker(worker);
         this.UpdateEntity();
