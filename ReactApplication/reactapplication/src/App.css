@@ -1,3 +1,10 @@
 ﻿select.JamalAbdulNasir {
     text-align: right;
 }
+
+body {
+}
+
+label.required {
+    color: red;
+}

@@ -6,7 +6,7 @@ import { UEntityManager } from "./JSONEntityManager"
 //The type of UEntityManager that serves all workers. Read the general device in the description of the abstract UEntityManager class.
 export class UWorkerEntityManager extends UEntityManager {
     public workers: UWorker[] = [];
-
+    public serverStatus: boolean = false;
     //HelperFunctions
     //Вспомогательные функции
     private FindWorkerInWorkersByName(worker_name: string, workers: UWorker[]): UWorker | null {
@@ -36,16 +36,23 @@ export class UWorkerEntityManager extends UEntityManager {
     //The principle is as follows.Entity Manager gets all the necessary entities, initializes them and checks their existence in its copy. In case of a new copy or missing copy, add it or delete it.
     public async UpdateEntity()
     {
+        await super.UpdateEntity();
         const new_workers: UWorker[] = [];
         const response = await JsonApplicationLibrary.GetWorkersRequest();
-        if (response!=null && response.status === 200) {
+        if (response != null && response.status === 200) {
+            this.serverStatus = true;
+            this.update_entity_delegate.Broadcast(true);
             const body = await response.data;
-            for (const json_entity of body.data)
-            {
+            for (const json_entity of body.data) {
                 const worker = new UWorker();
                 worker.SerializeJSON(json_entity);
                 new_workers.push(worker);
             }
+        }
+        else
+        {
+            this.serverStatus = false;
+            this.update_entity_delegate.Broadcast(false);
         }
 
         const workers_to_remove: UWorker[] = [];

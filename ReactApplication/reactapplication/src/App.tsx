@@ -42,16 +42,38 @@ export class App extends React.Component {
         this.actionStatus = EActionStatus.None
         //Ссылка на this.WorkerWidget
         this.WorkerWidgetRef = React.createRef();
+        this.errorServerLabelRef = React.createRef();
+        this.serverStatus = false;
         //Connecting to Delegates on a Worker Entity Manager.
         if (config_file.GetWorkerEntityManager() != null)
         {
             config_file.GetWorkerEntityManager()?.new_entity_delegate.RemoveHandlerByName(this.handleNewWorkerRecive);
             config_file.GetWorkerEntityManager()?.remove_entity_delegate.RemoveHandlerByName(this.handleRemoveWorkerRecive);
+            config_file.GetWorkerEntityManager()?.update_entity_delegate.RemoveHandler(this.handleNewUpdateRecive);
             config_file.GetWorkerEntityManager()?.new_entity_delegate.AddHandler(this.handleNewWorkerRecive);
             config_file.GetWorkerEntityManager()?.remove_entity_delegate.AddHandler(this.handleRemoveWorkerRecive);
+            config_file.GetWorkerEntityManager()?.update_entity_delegate.AddHandler(this.handleNewUpdateRecive);
             this.workers = config_file.GetWorkerEntityManager()?.workers.slice();
+            this.serverStatus = config_file.GetWorkerEntityManager()?.serverStatus;
         }
         
+    }
+    handleNewUpdateRecive = (request: boolean) => {
+        
+        if (this.errorServerLabelRef.current) {
+            if (this.serverStatus != request)
+            {
+                this.serverStatus = request;
+                if (request) {
+                    this.errorServerLabelRef.current.textContent = "";
+                }
+                else {
+                    this.errorServerLabelRef.current.textContent = "Server Not Response";
+                    }
+                this.forceUpdate();
+            }
+        }
+       
     }
 
     //Функции удаления и добавления локальной Workers копии.
@@ -147,6 +169,9 @@ export class App extends React.Component {
             <div style={{ height: '100vh' }}>
                 <div style={{ marginBottom: '20px' }}>
                     <h1>Control Entity</h1>
+                </div>
+                <div> 
+                    <label id="ErrorServerTextLabel" className='required' ref={this.errorServerLabelRef}>{this.serverStatus ? "" : "Server Not Response"  }</label>
                 </div>
                 <div>
                     <select id="ddlViewBy" name="select" size="12" multiple style={{ width: '200px' }}>

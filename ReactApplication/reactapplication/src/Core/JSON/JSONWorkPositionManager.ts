@@ -45,15 +45,20 @@ export class UWorkPositionEntityManager extends UEntityManager {
     //Принцип таков. Entity Manager получает все необходимые сущности, инициализирует их и проверяет их существование в своей копии. В случае новой копии или отсутсвия копии, добавляет ее или удаляет.
     //The principle is as follows.Entity Manager gets all the necessary entities, initializes them and checks their existence in its copy. In case of a new copy or missing copy, add it or delete it.
     public async UpdateEntity() {
+        await super.UpdateEntity();
         const newWorkPositions: UWorkPosition[] = [];
         const response = await JsonApplicationLibrary.GetWorkPositionsRequest();
         if (response != null && response.status === 200) {
+            this.update_entity_delegate.Broadcast(true);
             const body = await response.data;
             for (const json_entity of body.data) {
                 const worker = new UWorkPosition();
                 worker.SerializeJSON(json_entity);
                 newWorkPositions.push(worker);
             }
+        }
+        else {
+            this.update_entity_delegate.Broadcast(false);
         }
 
         const workPositionToRemove: UWorkPosition[] = [];

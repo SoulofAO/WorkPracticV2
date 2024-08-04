@@ -46,10 +46,12 @@ export class UEntityManager {
     //Delegates triggered when a serving entity is added or deleted.
     public new_entity_delegate: UDelegate;
     public remove_entity_delegate: UDelegate;
+    public update_entity_delegate: UDelegate;
 
     constructor() {
         this.new_entity_delegate = new UDelegate();
         this.remove_entity_delegate = new UDelegate();
+        this.update_entity_delegate = new UDelegate();
         this.timeToUpdate = 5000;
     }
     //Эта функция настраивает UEntityManager на работу. Конструктор не подходит, так как в нем есть операции с async-await.
