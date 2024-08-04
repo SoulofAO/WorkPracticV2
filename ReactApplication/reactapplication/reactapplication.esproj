@@ -15,4 +15,9 @@
     <Folder Include="src\Core\Application\" />
     <Folder Include="src\Core\Other\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="M:\App.tsx">
+      <Link>App.tsx</Link>
+    </None>
+  </ItemGroup>
 </Project>
